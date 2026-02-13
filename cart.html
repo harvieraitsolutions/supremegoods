@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Arsenal | Cart | Supreme Goods Ltd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #8b5cf6; --bg: #030712; --glass: rgba(255,255,255,0.02); --border: rgba(255,255,255,0.1); }
+        body { background: var(--bg); color: white; font-family: 'Plus Jakarta Sans'; }
+        
+        header { 
+            padding: 20px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(3, 7, 18, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+        
+        .logo { cursor: pointer; font-weight: 800; letter-spacing: 1px; }
+
+        .cart-wrapper { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; padding: 50px 10%; }
+        
+        .cart-item {
+            background: var(--glass); border: 1px solid var(--border); border-radius: 24px;
+            padding: 30px; display: flex; align-items: center; gap: 30px; margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        .cart-item:hover { border-color: var(--primary); background: rgba(255,255,255,0.05); }
+        .item-img { width: 100px; height: 100px; background: #111; border-radius: 15px; display:flex; align-items:center; justify-content:center; }
+        
+        /* Added link styling for item names */
+        .cart-item h4 { transition: 0.3s; cursor: pointer; }
+        .cart-item h4:hover { color: var(--primary); }
+
+        .summary-card {
+            background: var(--glass); border: 1px solid var(--border); border-radius: 30px;
+            padding: 40px; height: fit-content; position: sticky; top: 100px;
+        }
+        
+        .analytics-pill {
+            background: rgba(139, 92, 246, 0.1); border-radius: 10px; padding: 15px;
+            margin-top: 20px; border-left: 4px solid var(--primary);
+        }
+
+        .checkout-btn {
+            width: 100%; padding: 20px; border-radius: 15px; background: var(--primary);
+            color: white; border: none; font-weight: 800; cursor: pointer; margin-top: 30px;
+            text-transform: uppercase; letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .checkout-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3); }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo" onclick="location.href='home.html'">SUPREME CART</div>
+    <nav style="display:flex; gap:20px;">
+        <a href="home.html" style="color:white; text-decoration:none; opacity:0.6; font-weight: 600; font-size: 0.8rem;">HOME</a>
+        <a href="store.html" style="color:white; text-decoration:none; opacity:0.6; font-weight: 600; font-size: 0.8rem;">STORE</a>
+        <a href="checkout.html" style="color:var(--primary); text-decoration:none; font-weight:800; font-size: 0.8rem;">CHECKOUT</a>
+    </nav>
+</header>
+
+<div class="cart-wrapper">
+    <div class="items-list">
+        <h2 style="margin-bottom:30px; font-size:2.5rem;">Your Arsenal <span style="opacity:0.3">(2)</span></h2>
+        
+        <div class="cart-item">
+            <div class="item-img"><i class="fas fa-desktop" style="font-size:2rem; color:var(--primary);"></i></div>
+            <div style="flex:1;">
+                <h4 onclick="location.href='product-detail.html'">Supreme Workstation Z-100</h4>
+                <p style="opacity:0.5; font-size:0.8rem;">Custom Liquid Cooled • 128GB RAM</p>
+            </div>
+            <div style="text-align:right;">
+                <p style="font-weight:800; font-size:1.2rem;">£4,500.00</p>
+                <button style="background:none; border:none; color:#ef4444; cursor:pointer; margin-top:10px;"><i class="fas fa-trash"></i> Remove</button>
+            </div>
+        </div>
+
+        <div class="cart-item">
+            <div class="item-img"><i class="fas fa-keyboard" style="font-size:2rem; color:var(--primary);"></i></div>
+            <div style="flex:1;">
+                <h4 onclick="location.href='product-detail.html'">Apex Mechanical Pro</h4>
+                <p style="opacity:0.5; font-size:0.8rem;">Magnetic Switches • Black</p>
+            </div>
+            <div style="text-align:right;">
+                <p style="font-weight:800; font-size:1.2rem;">£199.00</p>
+                <button style="background:none; border:none; color:#ef4444; cursor:pointer; margin-top:10px;"><i class="fas fa-trash"></i> Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <aside class="summary-card">
+        <h3>Order Summary</h3>
+        <hr style="margin:20px 0; border:0; border-top:1px solid var(--border);">
+        <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
+            <span style="opacity:0.6;">Subtotal</span>
+            <span>£4,699.00</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
+            <span style="opacity:0.6;">Shipping (Luton HQ)</span>
+            <span style="color:#22c55e; cursor: pointer;" onclick="location.href='logistics.html'">FREE <i class="fas fa-info-circle" style="font-size: 0.7rem;"></i></span>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:1.5rem; font-weight:800; margin-top:30px;">
+            <span>Total</span>
+            <span>£4,699.00</span>
+        </div>
+
+        <div class="analytics-pill">
+            <p style="font-size:0.7rem; font-weight:800; color:var(--primary);">SAVINGS ANALYTICS</p>
+            <p style="font-size:0.9rem; cursor: pointer;" onclick="location.href='rewards.html'">You are saving £450 and earning 4,699 points! <i class="fas fa-external-link-alt" style="font-size: 0.6rem;"></i></p>
+        </div>
+
+        <button class="checkout-btn" onclick="location.href='checkout.html'">Secure Checkout <i class="fas fa-lock"></i></button>
+        
+        <p style="text-align: center; margin-top: 20px; font-size: 0.8rem; opacity: 0.5;">
+            <a href="store.html" style="color: white; text-decoration: none;">Continue Shopping</a>
+        </p>
+    </aside>
+</div>
+
+</body>
+</html>

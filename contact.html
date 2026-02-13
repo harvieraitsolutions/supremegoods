@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Global HQ | Contact | Supreme Goods Ltd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #6366f1; --bg: #050505; }
+        body { background: var(--bg); color: white; font-family: 'Plus Jakarta Sans'; overflow-x: hidden; margin: 0; }
+        
+        /* Navigation Header */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%; z-index: 1000;
+            background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo-box { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; color: white; }
+        .logo-box img { height: 35px; }
+
+        .nav-links { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: white; font-size: 0.8rem; font-weight: 700; opacity: 0.5; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; color: var(--primary); }
+
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; padding-top: 80px; }
+        
+        .map-side { background: #111; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .neon-marker { width: 40px; height: 40px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 50px var(--primary); position: relative; cursor: pointer; }
+        .neon-marker::after { content: '105 RUSSELL STREET, LUTON'; position: absolute; top: 50px; left: -100px; width: 250px; text-align: center; font-weight: 800; font-size: 0.8rem; color: var(--primary); letter-spacing: 2px; }
+
+        .form-side { padding: 60px 10%; display: flex; flex-direction: column; justify-content: center; }
+        input, textarea { width: 100%; padding: 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; color: white; margin-bottom: 20px; outline: none; }
+        input:focus { border-color: var(--primary); }
+        
+        .btn-submit { width: 100%; padding: 20px; border-radius: 50px; background: var(--primary); border: none; color: white; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4); }
+
+        .contact-info-footer { display: flex; gap: 40px; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; }
+        .info-block { cursor: pointer; }
+        .info-block h4 { font-size: 0.7rem; letter-spacing: 2px; color: var(--primary); margin-bottom: 10px; }
+        .info-block p { font-size: 0.9rem; opacity: 0.7; margin: 0; }
+        
+        /* Footer Bar */
+        footer { padding: 30px 10%; background: #000; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.75rem; opacity: 0.5; }
+        footer a { color: white; text-decoration: none; margin-left: 15px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="home.html" class="logo-box">
+            <img src="pic.png" alt="Logo">
+            <span style="font-weight: 800; letter-spacing: 1px;">SUPREME CONTACT</span>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="store.html">STORE</a></li>
+                <li><a href="b2b.html">CORPORATE</a></li>
+                <li><a href="support.html">SUPPORT</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contact-grid">
+        <div class="map-side">
+            <div style="position: absolute; opacity: 0.1; font-size: 30rem; font-weight: 900;">LUTON</div>
+            <div class="neon-marker" onclick="location.href='logistics.html'"></div>
+        </div>
+
+        <div class="form-side">
+            <h1 style="font-size: 3.5rem; margin-bottom: 10px;">Get in <span style="color: var(--primary)">Touch.</span></h1>
+            <p style="opacity: 0.6; margin-bottom: 40px;">Whether it's a corporate inquiry or a custom hardware build, our executive office at 105 Russell Street is ready.</p>
+            
+            <form onsubmit="event.preventDefault(); alert('Inquiry Transmitted to Thota Natesh\'s Office'); location.href='home.html';">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="text" placeholder="Subject" required>
+                <textarea rows="5" placeholder="How can Supreme Goods Ltd assist you?" required></textarea>
+                <button type="submit" class="btn-submit">Transmit Inquiry</button>
+            </form>
+
+            <div class="contact-info-footer">
+                <div class="info-block" onclick="location.href='logistics.html'">
+                    <h4>HEADQUARTERS</h4>
+                    <p>105 Russell Street,<br>Luton, LU1 5EB, UK</p>
+                </div>
+                <div class="info-block" onclick="location.href='support.html'">
+                    <h4>DIRECT LINE</h4>
+                    <p>+44 7398 527022</p>
+                </div>
+                <div class="info-block" onclick="location.href='director.html'">
+                    <h4>DIRECTOR OFFICE</h4>
+                    <p>Thota Natesh</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>&copy; 2026 SUPREME GOODS LTD | Luton, United Kingdom</div>
+        <div>
+            <a href="legal.html">Privacy Policy</a>
+            <a href="legal.html">Terms & Compliance</a>
+            <a href="careers.html">Join the Team</a>
+        </div>
+    </footer>
+
+</body>
+</html>

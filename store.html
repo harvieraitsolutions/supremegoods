@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Store | 70+ Elite Components | Supreme Goods Ltd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #00f2fe;
+            --primary-glow: rgba(0, 242, 254, 0.4);
+            --bg-dark: #050505;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* Navigation Minimalist */
+        nav.store-nav {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.9);
+        }
+
+        .logo-small { cursor: pointer; display: flex; align-items: center; }
+        .logo-small img { height: 35px; margin-right: 10px; }
+        
+        .search-bar {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 10px 25px;
+            border-radius: 50px;
+            width: 40%;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            background: none;
+            border: none;
+            color: white;
+            width: 100%;
+            margin-left: 10px;
+            outline: none;
+        }
+
+        .user-actions a { color: white; margin-left: 20px; text-decoration: none; font-size: 1.1rem; opacity: 0.7; transition: 0.3s; }
+        .user-actions a:hover { opacity: 1; color: var(--primary); }
+
+        /* Store Layout */
+        .store-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            padding: 40px 5%;
+        }
+
+        /* Filter Sidebar */
+        .sidebar {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            height: fit-content;
+            position: sticky;
+            top: 110px;
+        }
+
+        .filter-group { margin-bottom: 30px; }
+        .filter-group h4 { margin-bottom: 15px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); }
+        
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-option:hover, .filter-option.active { opacity: 1; color: var(--primary); }
+        .filter-option input { cursor: pointer; accent-color: var(--primary); }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 20px;
+            transition: var(--transition);
+            cursor: pointer;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px var(--primary-glow);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .product-image i { font-size: 4.5rem; opacity: 0.1; transition: 0.5s; }
+        .product-card:hover .product-image i { opacity: 0.6; color: var(--primary); transform: scale(1.1) rotate(-5deg); }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary);
+            color: black;
+            font-weight: 800;
+            font-size: 0.65rem;
+            padding: 4px 10px;
+            border-radius: 50px;
+            text-transform: uppercase;
+        }
+
+        .product-info h3 { font-size: 1rem; margin-bottom: 8px; font-weight: 600; height: 40px; overflow: hidden; }
+        .category-label { font-size: 0.7rem; opacity: 0.4; text-transform: uppercase; letter-spacing: 1px; }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .price { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
+        
+        .add-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: none;
+            background: white;
+            color: black;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-btn:hover { background: var(--primary); transform: rotate(90deg); }
+
+        footer { padding: 60px 5%; border-top: 1px solid var(--border); margin-top: 50px; text-align: center; opacity: 0.5; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="store-nav">
+        <div class="logo-small" onclick="location.href='home.html'">
+            <img src="pic.png" alt="Logo">
+            <span style="font-weight: 800; letter-spacing: 1px;">SUPREME STORE</span>
+        </div>
+        <div class="search-bar">
+            <i class="fas fa-search" onclick="location.href='search.html'"></i>
+            <input type="text" id="storeSearch" placeholder="Search 70+ components..." onkeyup="searchProducts()">
+        </div>
+        <div class="user-actions">
+            <a href="dashboard.html"><i class="fas fa-user-circle"></i></a>
+            <a href="compare.html"><i class="fas fa-balance-scale"></i></a>
+            <a href="cart.html" style="position: relative;">
+                <i class="fas fa-shopping-bag"></i>
+                <span id="cart-count" style="position: absolute; top: -10px; right: -10px; background: var(--primary); color: black; font-size: 0.6rem; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;">2</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="store-container">
+        <aside class="sidebar">
+            <div class="filter-group">
+                <h4>Technical Categories</h4>
+                <div class="filter-option"><input type="checkbox" class="cat-filter" value="GPU" onclick="applyFilters()"> Graphics Cards</div>
+                <div class="filter-option"><input type="checkbox" class="cat-filter" value="CPU" onclick="applyFilters()"> Processors</div>
+                <div class="filter-option"><input type="checkbox" class="cat-filter" value="LAPTOP" onclick="applyFilters()"> Laptops</div>
+                <div class="filter-option"><input type="checkbox" class="cat-filter" value="RAM" onclick="applyFilters()"> Memory</div>
+                <div class="filter-option"><input type="checkbox" class="cat-filter" value="STORAGE" onclick="applyFilters()"> Storage</div>
+                <div class="filter-option"><input type="checkbox" class="cat-filter" value="COOLING" onclick="applyFilters()"> Cooling</div>
+                <div class="filter-option"><input type="checkbox" class="cat-filter" value="PERIPHERAL" onclick="applyFilters()"> Peripherals</div>
+                <div class="filter-option"><input type="checkbox" class="cat-filter" value="SMART" onclick="applyFilters()"> AI Smart Home</div>
+            </div>
+
+            <div class="filter-group">
+                <h4>System Tier</h4>
+                <div class="filter-option"><input type="radio" name="tier" onclick="location.href='flash-sale.html'"> Flash Deals</div>
+                <div class="filter-option"><input type="radio" name="tier" onclick="location.href='b2b.html'"> Corporate/B2B</div>
+            </div>
+
+            <div class="filter-group">
+                <h4>Quick Links</h4>
+                <div class="filter-option" onclick="location.href='green-tech.html'"><i class="fas fa-leaf"></i> Eco-Recycle</div>
+                <div class="filter-option" onclick="location.href='support.html'"><i class="fas fa-headset"></i> Support Hub</div>
+            </div>
+        </aside>
+
+        <main id="main-grid" class="product-grid">
+            </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SUPREME GOODS LTD | 105 Russell Street, Luton | Director: Thota Natesh</p>
+        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px;">
+            <a href="legal.html" style="color: white; text-decoration: none;">Legal</a>
+            <a href="contact.html" style="color: white; text-decoration: none;">Contact</a>
+            <a href="careers.html" style="color: white; text-decoration: none;">Careers</a>
+        </div>
+    </footer>
+
+    <script>
+        // Inventory Data (70 Items)
+        const products = [
+            // GPUs (10)
+            { id: 1, cat: "GPU", name: "Supreme RTX 5090 Ti", price: "£1,999", tag: "Flagship", icon: "fa-microchip" },
+            { id: 2, cat: "GPU", name: "NVIDIA RTX 5080 Super", price: "£1,199", tag: "Popular", icon: "fa-microchip" },
+            { id: 3, cat: "GPU", name: "AMD Radeon RX 8900 XTX", price: "£999", tag: "New", icon: "fa-microchip" },
+            { id: 4, cat: "GPU", name: "Supreme RTX 5070 OC", price: "£649", tag: "Stock", icon: "fa-microchip" },
+            { id: 5, cat: "GPU", name: "Radeon RX 8800 XT", price: "£549", tag: "Stock", icon: "fa-microchip" },
+            { id: 6, cat: "GPU", name: "Supreme Workstation Pro G1", price: "£2,499", tag: "B2B", icon: "fa-server" },
+            { id: 7, cat: "GPU", name: "NVIDIA RTX 5060 Vision", price: "£399", tag: "Value", icon: "fa-microchip" },
+            { id: 8, cat: "GPU", name: "Intel Arc Battlemage A900", price: "£449", tag: "New", icon: "fa-microchip" },
+            { id: 9, cat: "GPU", name: "Liquid Cooled RTX 5090", price: "£2,299", tag: "Elite", icon: "fa-tint" },
+            { id: 10, cat: "GPU", name: "AMD Radeon Pro W7900", price: "£3,800", tag: "Studio", icon: "fa-briefcase" },
+
+            // CPUs (10)
+            { id: 11, cat: "CPU", name: "Intel Core i9-16900K", price: "£620", tag: "Hot", icon: "fa-microchip" },
+            { id: 12, cat: "CPU", name: "AMD Ryzen 9 9950X", price: "£650", tag: "Top Tier", icon: "fa-microchip" },
+            { id: 13, cat: "CPU", name: "Intel Core i7-16700K", price: "£410", tag: "Stock", icon: "fa-microchip" },
+            { id: 14, cat: "CPU", name: "AMD Ryzen 7 9800X3D", price: "£480", tag: "Gamer Choice", icon: "fa-bolt" },
+            { id: 15, cat: "CPU", name: "Threadripper Pro 7995WX", price: "£8,500", tag: "Monster", icon: "fa-server" },
+            { id: 16, cat: "CPU", name: "Intel Core i5-16600K", price: "£299", tag: "Value", icon: "fa-microchip" },
+            { id: 17, cat: "CPU", name: "AMD Ryzen 5 9600X", price: "£250", tag: "Stock", icon: "fa-microchip" },
+            { id: 18, cat: "CPU", name: "Xeon W-3400 Series", price: "£3,200", tag: "B2B", icon: "fa-network-wired" },
+            { id: 19, cat: "CPU", name: "Supreme Quantum Core Q1", price: "£1,200", tag: "Experimental", icon: "fa-atom" },
+            { id: 20, cat: "CPU", name: "Ryzen 9 9900X Extreme", price: "£550", tag: "Sale", icon: "fa-microchip" },
+
+            // Laptops (10)
+            { id: 21, cat: "LAPTOP", name: "SupremeBook Pro 16'", price: "£2,499", tag: "Best Seller", icon: "fa-laptop" },
+            { id: 22, cat: "LAPTOP", name: "ASUS ROG Zephyrus G16", price: "£1,899", tag: "Gaming", icon: "fa-laptop-code" },
+            { id: 23, cat: "LAPTOP", name: "Razer Blade 18 v2026", price: "£3,200", tag: "Premium", icon: "fa-laptop" },
+            { id: 24, cat: "LAPTOP", name: "SupremeBook Air M4", price: "£1,199", tag: "Thin", icon: "fa-laptop" },
+            { id: 25, cat: "LAPTOP", name: "Alienware m18 R2", price: "£2,100", tag: "Heavyweight", icon: "fa-space-shuttle" },
+            { id: 26, cat: "LAPTOP", name: "Dell XPS 17 Platinum", price: "£2,300", tag: "Studio", icon: "fa-laptop" },
+            { id: 27, cat: "LAPTOP", name: "Supreme Stealth 14", price: "£1,450", tag: "New", icon: "fa-user-secret" },
+            { id: 28, cat: "LAPTOP", name: "Lenovo Legion 9i", price: "£3,500", tag: "Water Cooled", icon: "fa-laptop" },
+            { id: 29, cat: "LAPTOP", name: "HP Spectre x360", price: "£1,300", tag: "2-in-1", icon: "fa-sync" },
+            { id: 30, cat: "LAPTOP", name: "Supreme Workstation Mobile", price: "£4,000", tag: "B2B", icon: "fa-briefcase" },
+
+            // RAM (10)
+            { id: 31, cat: "RAM", name: "Supreme Dominator 64GB DDR5", price: "£280", tag: "Fast", icon: "fa-memory" },
+            { id: 32, cat: "RAM", name: "G.Skill Trident Z5 32GB", price: "£160", tag: "RGB", icon: "fa-memory" },
+            { id: 33, cat: "RAM", name: "Crucial Pro 128GB Bundle", price: "£520", tag: "Workstation", icon: "fa-memory" },
+            { id: 34, cat: "RAM", name: "Supreme Vengeance 32GB", price: "£140", tag: "Value", icon: "fa-memory" },
+            { id: 35, cat: "RAM", name: "Kingston Fury 64GB Kit", price: "£260", tag: "Stock", icon: "fa-memory" },
+            { id: 36, cat: "RAM", name: "Supreme ECC Server RAM 256GB", price: "£1,100", tag: "Enterprise", icon: "fa-server" },
+            { id: 37, cat: "RAM", name: "TeamGroup T-Force 32GB", price: "£150", tag: "New", icon: "fa-memory" },
+            { id: 38, cat: "RAM", name: "Corsair LXP 16GB DDR5", price: "£85", tag: "Budget", icon: "fa-memory" },
+            { id: 39, cat: "RAM", name: "Supreme Overclocked 32GB", price: "£210", tag: "Elite", icon: "fa-tachometer-alt" },
+            { id: 40, cat: "RAM", name: "PNY XLR8 64GB", price: "£270", tag: "Stock", icon: "fa-memory" },
+
+            // Storage (10)
+            { id: 41, cat: "STORAGE", name: "Supreme Gen5 NVMe 4TB", price: "£450", tag: "Ultra", icon: "fa-hdd" },
+            { id: 42, cat: "STORAGE", name: "Samsung 990 Pro 2TB", price: "£180", tag: "Fast", icon: "fa-hdd" },
+            { id: 43, cat: "STORAGE", name: "WD Black SN850X 1TB", price: "£99", tag: "Gamer", icon: "fa-hdd" },
+            { id: 44, cat: "STORAGE", name: "Supreme SSD SATA 8TB", price: "£600", tag: "Bulk", icon: "fa-database" },
+            { id: 45, cat: "STORAGE", name: "Crucial T700 2TB", price: "£240", tag: "New", icon: "fa-hdd" },
+            { id: 46, cat: "STORAGE", name: "Supreme NAS Drive 20TB", price: "£420", tag: "Server", icon: "fa-server" },
+            { id: 47, cat: "STORAGE", name: "Seagate FireCuda 4TB", price: "£310", tag: "Stock", icon: "fa-hdd" },
+            { id: 48, cat: "STORAGE", name: "Sabrent Rocket 8TB NVMe", price: "£999", tag: "Luxury", icon: "fa-hdd" },
+            { id: 49, cat: "STORAGE", name: "Supreme Portable SSD 2TB", price: "£150", tag: "Mobile", icon: "fa-usb" },
+            { id: 50, cat: "STORAGE", name: "Kingston NV2 2TB", price: "£110", tag: "Value", icon: "fa-hdd" },
+
+            // Cooling (5)
+            { id: 51, cat: "COOLING", name: "Supreme Zenith AIO 360", price: "£210", tag: "Quiet", icon: "fa-fan" },
+            { id: 52, cat: "COOLING", name: "NZXT Kraken Elite", price: "£260", tag: "Display", icon: "fa-desktop" },
+            { id: 53, cat: "COOLING", name: "Supreme Air Frost v2", price: "£85", tag: "Classic", icon: "fa-wind" },
+            { id: 54, cat: "COOLING", name: "Noctua NH-D15 G2", price: "£110", tag: "Legend", icon: "fa-snowflake" },
+            { id: 55, cat: "COOLING", name: "Custom Loop Supreme Kit", price: "£499", tag: "DIY", icon: "fa-vial" },
+
+            // Peripherals (10)
+            { id: 56, cat: "PERIPHERAL", name: "Ghost M1 Mouse", price: "£129", tag: "E-Sports", icon: "fa-mouse" },
+            { id: 57, cat: "PERIPHERAL", name: "Apex Mechanical Pro K1", price: "£199", tag: "RGB", icon: "fa-keyboard" },
+            { id: 58, cat: "PERIPHERAL", name: "Supreme Vision 4K Monitor", price: "£799", tag: "OLED", icon: "fa-desktop" },
+            { id: 59, cat: "PERIPHERAL", name: "Sonic Sphere Headset", price: "£249", tag: "Spatial", icon: "fa-headphones" },
+            { id: 60, cat: "PERIPHERAL", name: "Supreme Desk Mat XL", price: "£45", tag: "Eco", icon: "fa-border-all" },
+            { id: 61, cat: "PERIPHERAL", name: "Logitech G Pro X Superlight", price: "£140", tag: "Pro", icon: "fa-mouse" },
+            { id: 62, cat: "PERIPHERAL", name: "SteelSeries Apex Pro TKL", price: "£180", tag: "Magnetic", icon: "fa-keyboard" },
+            { id: 63, cat: "PERIPHERAL", name: "Supreme 4K Web-Node", price: "£199", tag: "Streaming", icon: "fa-video" },
+            { id: 64, cat: "PERIPHERAL", name: "Blue Yeti Supreme Mic", price: "£150", tag: "Studio", icon: "fa-microphone" },
+            { id: 65, cat: "PERIPHERAL", name: "Elgato Stream Deck XL", price: "£220", tag: "Utility", icon: "fa-th" },
+
+            // Smart Home (5)
+            { id: 66, cat: "SMART", name: "Supreme Neural Hub v4", price: "£599", tag: "AI Hub", icon: "fa-brain" },
+            { id: 67, cat: "SMART", name: "AI Security Node", price: "£299", tag: "Guardian", icon: "fa-shield-alt" },
+            { id: 68, cat: "SMART", name: "Supreme Smart Ambient Light", price: "£120", tag: "RGB", icon: "fa-lightbulb" },
+            { id: 69, cat: "SMART", name: "Neural Thermostat", price: "£199", tag: "Eco", icon: "fa-thermometer-half" },
+            { id: 70, cat: "SMART", name: "Supreme AI Home Server", price: "£1,450", tag: "Cloud", icon: "fa-cloud" }
+        ];
+
+        const grid = document.getElementById('main-grid');
+
+        function displayProducts(filteredList) {
+            grid.innerHTML = '';
+            filteredList.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.onclick = () => location.href = 'product-detail.html';
+                card.innerHTML = `
+                    <span class="badge">${p.tag}</span>
+                    <div class="product-image">
+                        <i class="fas ${p.icon}"></i>
+                    </div>
+                    <div class="product-info">
+                        <span class="category-label">${p.cat}</span>
+                        <h3>${p.name}</h3>
+                        <div class="price-row">
+                            <span class="price">${p.price}</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); location.href='cart.html'"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function applyFilters() {
+            const checkedBoxes = Array.from(document.querySelectorAll('.cat-filter:checked')).map(cb => cb.value);
+            if (checkedBoxes.length === 0) {
+                displayProducts(products);
+                return;
+            }
+            const filtered = products.filter(p => checkedBoxes.includes(p.cat));
+            displayProducts(filtered);
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('storeSearch').value.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(query) || p.cat.toLowerCase().includes(query));
+            displayProducts(filtered);
+        }
+
+        // Initialize with all products
+        displayProducts(products);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supreme Rewards | Elite Membership | Supreme Goods Ltd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #fbbf24; /* Elite Amber/Gold */
+            --primary-glow: rgba(251, 191, 36, 0.4);
+            --bg-dark: #000000;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
+
+        /* Global Header (Fully Interconnected) */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%; z-index: 1000;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo-box { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; color: white; }
+        .logo-box img { height: 40px; filter: drop-shadow(0 0 10px var(--primary-glow)); }
+
+        .nav-matrix { display: flex; gap: 25px; list-style: none; }
+        .nav-matrix a { 
+            text-decoration: none; color: white; font-size: 0.8rem; font-weight: 700; 
+            opacity: 0.6; transition: 0.3s; letter-spacing: 1px;
+        }
+        .nav-matrix a:hover { opacity: 1; color: var(--primary); }
+        .active-link { opacity: 1 !important; color: var(--primary) !important; border-bottom: 2px solid var(--primary); }
+
+        /* Rewards Hero Section */
+        .rewards-hero {
+            height: 80vh; padding: 120px 10% 60px; text-align: center;
+            background: radial-gradient(circle at center, #451a03, #000);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            position: relative; overflow: hidden;
+        }
+
+        .points-display { 
+            font-size: 8rem; font-weight: 800; color: var(--primary); 
+            line-height: 1; text-shadow: 0 0 50px var(--primary-glow);
+            margin: 20px 0;
+        }
+
+        .progress-container { width: 100%; max-width: 800px; margin-top: 40px; }
+        .progress-bar { height: 12px; background: rgba(255,255,255,0.05); border-radius: 50px; overflow: hidden; border: 1px solid var(--glass-border); }
+        .fill { width: 65%; height: 100%; background: linear-gradient(90deg, #f59e0b, #fbbf24); box-shadow: 0 0 20px var(--primary); }
+
+        /* Tier Grid */
+        .tier-section { padding: 100px 10%; }
+        .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+
+        .tier-card {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            padding: 50px; border-radius: 40px; transition: var(--transition);
+            text-align: center; position: relative;
+        }
+
+        .tier-card.active { border-color: var(--primary); background: rgba(251, 191, 36, 0.03); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .tier-card h3 { font-size: 2rem; margin-bottom: 15px; }
+        .current-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: black; padding: 5px 20px; border-radius: 50px; font-weight: 800; font-size: 0.7rem; }
+
+        .benefit-list { list-style: none; margin: 30px 0; text-align: left; }
+        .benefit-list li { margin-bottom: 12px; display: flex; gap: 10px; opacity: 0.7; font-size: 0.9rem; }
+        .benefit-list i { color: var(--primary); margin-top: 4px; }
+
+        /* Redemption Center */
+        .redemption-section { padding: 100px 10%; background: #050505; }
+        .redeem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+        .redeem-card {
+            background: var(--glass); padding: 30px; border-radius: 25px; border: 1px solid var(--border);
+            transition: 0.3s; cursor: pointer; text-align: center;
+        }
+        .redeem-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .redeem-card i { font-size: 2rem; color: var(--primary); margin-bottom: 15px; }
+
+        /* Multi-Page Table Detail */
+        .points-table { width: 100%; border-collapse: collapse; margin-top: 50px; background: var(--glass); border-radius: 20px; overflow: hidden; }
+        .points-table th { background: rgba(255,255,255,0.05); padding: 20px; text-align: left; color: var(--primary); font-size: 0.8rem; }
+        .points-table td { padding: 20px; border-bottom: 1px solid var(--glass-border); font-size: 0.9rem; }
+
+        /* Footer Unified */
+        footer { padding: 100px 10% 50px; border-top: 1px solid var(--glass-border); background: #000; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+        .footer-nav a { display: block; color: white; opacity: 0.5; text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-nav a:hover { opacity: 1; color: var(--primary); padding-left: 5px; }
+
+        /* Interactive Button */
+        .btn-supreme {
+            background: var(--primary); color: black; padding: 15px 35px; border-radius: 12px;
+            font-weight: 800; border: none; cursor: pointer; transition: 0.3s; text-transform: uppercase;
+        }
+        .btn-supreme:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--primary-glow); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="home.html" class="logo-box">
+            <img src="pic.png" alt="Logo"> <span>SUPREME ELITE</span>
+        </a>
+        <ul class="nav-matrix">
+            <li><a href="home.html">HOME</a></li>
+            <li><a href="store.html">STORE</a></li>
+            <li><a href="dashboard.html">DASHBOARD</a></li>
+            <li><a href="rewards.html" class="active-link">REWARDS</a></li>
+            <li><a href="contact.html">HELP</a></li>
+        </ul>
+    </header>
+
+    <section class="rewards-hero">
+        <span style="letter-spacing: 5px; color: var(--primary); font-weight: 800; font-size: 0.7rem;">MEMBERSHIP STATUS: GOLD ELITE</span>
+        <div class="points-display">4,250</div>
+        <h2 style="font-size: 1.5rem; letter-spacing: 2px;">S-CREDITS EARNED</h2>
+        <p style="max-width: 600px; margin: 20px auto; opacity: 0.6;">
+            Your loyalty is the engine of **Supreme Goods Ltd**. As a Gold Tier member, you are currently earning 2x points on all hardware acquisitions from our Luton HQ.
+        </p>
+        
+        <div class="progress-container">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.8rem; font-weight: 600;">
+                <span>Current: Gold Elite</span>
+                <span style="color: var(--primary);">750 pts to Supreme Black</span>
+            </div>
+            <div class="progress-bar"><div class="fill"></div></div>
+        </div>
+        
+        <div style="margin-top: 40px; display: flex; gap: 20px;">
+            <button class="btn-supreme" onclick="location.href='store.html'">Boost Points</button>
+            <button class="btn-supreme" style="background: transparent; color: white; border: 1px solid white;" onclick="location.href='faq.html'">How it Works</button>
+        </div>
+    </section>
+
+    <section class="tier-section">
+        <h2 style="text-align: center; font-size: 3rem; font-weight: 800; margin-bottom: 60px;">The Membership Architecture</h2>
+        <div class="tier-grid">
+            <div class="tier-card">
+                <h3>Silver</h3>
+                <p style="opacity: 0.5;">ENTRY LEVEL</p>
+                <ul class="benefit-list">
+                    <li><i class="fas fa-check-circle"></i> 1pt per £1 spent</li>
+                    <li><i class="fas fa-check-circle"></i> Standard Customer Support</li>
+                    <li><i class="fas fa-check-circle"></i> Access to Nexus Flash Sales</li>
+                </ul>
+                <button class="btn-supreme" style="background: #334155; color: white; width: 100%;" disabled>Unlocked</button>
+            </div>
+            <div class="tier-card active">
+                <span class="current-badge">CURRENT STATUS</span>
+                <h3 style="color: var(--primary);">Gold Elite</h3>
+                <p style="opacity: 0.5;">PROFESSIONAL TIER</p>
+                <ul class="benefit-list">
+                    <li><i class="fas fa-check-circle"></i> 2pts per £1 spent</li>
+                    <li><i class="fas fa-check-circle"></i> Priority shipping from Luton</li>
+                    <li><i class="fas fa-check-circle"></i> Early access to GPU Drops</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated B2B Concierge</li>
+                </ul>
+                <button class="btn-supreme" style="width: 100%;" onclick="location.href='dashboard.html'">Manage Perks</button>
+            </div>
+            <div class="tier-card">
+                <h3>Supreme Black</h3>
+                <p style="opacity: 0.5;">EXECUTIVE TIER</p>
+                <ul class="benefit-list">
+                    <li><i class="fas fa-check-circle"></i> 5pts per £1 spent</li>
+                    <li><i class="fas fa-check-circle"></i> Direct line to Thota Natesh</li>
+                    <li><i class="fas fa-check-circle"></i> Global Free Express Shipping</li>
+                    <li><i class="fas fa-check-circle"></i> Beta testing for AI Hardware</li>
+                </ul>
+                <button class="btn-supreme" style="background: transparent; color: white; border: 1px solid white; width: 100%;" onclick="location.href='store.html'">Unlock at 5,000 pts</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="redemption-section">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.5rem;">Point Redemption Nexus</h2>
+            <p style="opacity: 0.5;">Convert your S-Credits into technical upgrades.</p>
+        </div>
+        <div class="redeem-grid">
+            <div class="redeem-card" onclick="location.href='cart.html'">
+                <i class="fas fa-tags"></i>
+                <h4>£50 Discount</h4>
+                <p style="font-size: 0.7rem; margin-top: 10px; opacity: 0.5;">1,000 CREDITS</p>
+            </div>
+            <div class="redeem-card" onclick="location.href='logistics.html'">
+                <i class="fas fa-plane"></i>
+                <h4>Free Logistics</h4>
+                <p style="font-size: 0.7rem; margin-top: 10px; opacity: 0.5;">2,500 CREDITS</p>
+            </div>
+            <div class="redeem-card" onclick="location.href='support.html'">
+                <i class="fas fa-user-shield"></i>
+                <h4>Extended Warranty</h4>
+                <p style="font-size: 0.7rem; margin-top: 10px; opacity: 0.5;">3,000 CREDITS</p>
+            </div>
+            <div class="redeem-card" onclick="location.href='gaming.html'">
+                <i class="fas fa-gift"></i>
+                <h4>Pro Peripheral Kit</h4>
+                <p style="font-size: 0.7rem; margin-top: 10px; opacity: 0.5;">10,000 CREDITS</p>
+            </div>
+        </div>
+
+        <table class="points-table">
+            <thead>
+                <tr>
+                    <th>DATE</th>
+                    <th>TECHNICAL SOURCE</th>
+                    <th>STATUS</th>
+                    <th>CREDITS EARNED</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Feb 12, 2026</td>
+                    <td>RTX 5090 Supreme Acquisition (Store)</td>
+                    <td style="color: #22c55e;">VERIFIED</td>
+                    <td>+3,998</td>
+                </tr>
+                <tr>
+                    <td>Jan 28, 2026</td>
+                    <td>Eco-Recycle Program (Green Tech)</td>
+                    <td style="color: #22c55e;">VERIFIED</td>
+                    <td>+250</td>
+                </tr>
+                <tr>
+                    <td>Jan 15, 2026</td>
+                    <td>Community Build Upload (Hub)</td>
+                    <td style="color: #22c55e;">VERIFIED</td>
+                    <td>+100</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h3 style="margin-bottom: 20px;">SUPREME GOODS LTD</h3>
+                <p style="font-size: 0.85rem; opacity: 0.5;">105 Russell Street, Luton, UK</p>
+                <p style="font-size: 0.85rem; opacity: 0.5; margin-top: 10px;">Executive Director: Thota Natesh</p>
+            </div>
+            <div class="footer-nav">
+                <h4>Infrastructure</h4>
+                <a href="home.html">Home Dashboard</a>
+                <a href="store.html">Mega Store</a>
+                <a href="tracking.html">Order Tracker</a>
+                <a href="logistics.html">Shipping Nebula</a>
+            </div>
+            <div class="footer-nav">
+                <h4>Rewards Program</h4>
+                <a href="dashboard.html">My Dashboard</a>
+                <a href="rewards.html">Point Status</a>
+                <a href="legal.html">Terms of Loyalty</a>
+                <a href="partner.html">Vendor Partners</a>
+            </div>
+            <div class="footer-nav">
+                <h4>Company</h4>
+                <a href="director.html">Director Profile</a>
+                <a href="careers.html">Join the Team</a>
+                <a href="contact.html">Global HQ</a>
+                <a href="legal.html">Compliance</a>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px; opacity: 0.3; font-size: 0.75rem;">
+            &copy; 2026 SUPREME GOODS LTD. Points have no cash value outside the Supreme Ecosystem.
+        </div>
+    </footer>
+
+</body>
+</html>

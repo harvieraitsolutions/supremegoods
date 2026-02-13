@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison Engine | Supreme Goods Ltd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #22d3ee;
+            --primary-glow: rgba(34, 211, 238, 0.3);
+            --bg: #020617;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text: #f8fafc;
+        }
+        * { margin:0; padding:0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%; z-index: 1000;
+            background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo-box { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; color: white; }
+
+        .nav-matrix { display: flex; gap: 20px; list-style: none; }
+        .nav-matrix a { text-decoration: none; color: white; font-size: 0.75rem; opacity: 0.6; font-weight: 700; transition: 0.3s; }
+        .nav-matrix a:hover { opacity: 1; color: var(--primary); }
+
+        .compare-hero { padding: 150px 10% 50px; text-align: center; background: radial-gradient(circle at top, #083344, #020617); }
+        .compare-hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 15px; }
+
+        .compare-table-container { padding: 50px 5%; overflow-x: auto; }
+        table { width: 100%; border-collapse: separate; border-spacing: 15px 0; }
+        
+        th { 
+            background: var(--glass); padding: 40px 20px; border-radius: 30px 30px 0 0; 
+            border: 1px solid var(--glass-border); min-width: 300px;
+        }
+
+        .product-select-box {
+            background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px;
+            border: 1px dashed var(--primary); cursor: pointer; margin-top: 15px;
+            transition: 0.3s;
+        }
+        .product-select-box:hover { background: rgba(34, 211, 238, 0.1); border-style: solid; }
+
+        td { 
+            padding: 25px; background: var(--glass); border: 1px solid var(--glass-border);
+            text-align: center; transition: 0.3s;
+        }
+        
+        tr:hover td { background: rgba(255,255,255,0.07); border-color: var(--primary); }
+
+        .spec-label { 
+            text-align: left; background: none; border: none; font-weight: 800; 
+            color: var(--primary); text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem;
+        }
+
+        .winner-pill {
+            background: var(--primary); color: black; padding: 4px 12px;
+            border-radius: 50px; font-size: 0.7rem; font-weight: 800; margin-left: 10px;
+        }
+
+        .footer-minimal { padding: 60px 10%; border-top: 1px solid var(--glass-border); text-align: center; opacity: 0.6; }
+        .footer-links { margin-top: 15px; display: flex; justify-content: center; gap: 20px; font-size: 0.7rem; }
+        .footer-links a { color: white; text-decoration: none; opacity: 0.6; }
+        .footer-links a:hover { opacity: 1; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="home.html" class="logo-box">
+        <img src="pic.png" alt="Logo" style="height:35px;">
+        <span style="font-weight:800;">SUPREME ANALYTICS</span>
+    </a>
+    <ul class="nav-matrix">
+        <li><a href="home.html">HOME</a></li>
+        <li><a href="store.html">STORE</a></li>
+        <li><a href="compare.html" style="color:var(--primary); opacity:1;">COMPARE</a></li>
+        <li><a href="cart.html">CART</a></li>
+        <li><a href="dashboard.html">DASHBOARD</a></li>
+    </ul>
+</header>
+
+<section class="compare-hero">
+    <h1>Side-by-Side <span style="color:var(--primary)">Analysis</span></h1>
+    <p>Compare the world's most powerful components with Supreme precision.</p>
+</section>
+
+<div class="compare-table-container">
+    <table>
+        <thead>
+            <tr>
+                <th class="spec-label" style="background:none; border:none;">Specifications</th>
+                <th>
+                    <i class="fas fa-microchip" style="font-size: 3rem; margin-bottom: 20px; cursor: pointer;" onclick="location.href='product-detail.html'"></i>
+                    <h3 style="cursor: pointer;" onclick="location.href='product-detail.html'">Supreme RTX 5090</h3>
+                    <div class="product-select-box" onclick="location.href='store.html'">Change Product</div>
+                </th>
+                <th>
+                    <i class="fas fa-bolt" style="font-size: 3rem; margin-bottom: 20px; color: #fbbf24;"></i>
+                    <h3>Titan Ultra G2</h3>
+                    <div class="product-select-box" onclick="location.href='store.html'">Change Product</div>
+                </th>
+                <th>
+                    <div onclick="location.href='store.html'" style="cursor: pointer;">
+                        <i class="fas fa-plus" style="font-size: 2rem; opacity: 0.3;"></i>
+                        <p>Add to Compare</p>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="spec-label">Base Clock</td>
+                <td>2.3 GHz <span class="winner-pill">BEST</span></td>
+                <td>2.1 GHz</td>
+                <td>--</td>
+            </tr>
+            <tr>
+                <td class="spec-label">VRAM</td>
+                <td>32GB GDDR7</td>
+                <td>24GB GDDR7X</td>
+                <td>--</td>
+            </tr>
+            <tr>
+                <td class="spec-label">Power Draw</td>
+                <td>450W (Eco-Sync)</td>
+                <td>600W</td>
+                <td>--</td>
+            </tr>
+            <tr>
+                <td class="spec-label">Ray Tracing Cores</td>
+                <td>128 Cores <span class="winner-pill">BEST</span></td>
+                <td>96 Cores</td>
+                <td>--</td>
+            </tr>
+            <tr>
+                <td class="spec-label">Director's Choice</td>
+                <td style="cursor: pointer;" onclick="location.href='director.html'"><i class="fas fa-check-circle" style="color:var(--primary)"></i> Approved</td>
+                <td><i class="fas fa-times-circle" style="opacity:0.3"></i></td>
+                <td>--</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button onclick="location.href='cart.html'" style="width:100%; padding:15px; background:var(--primary); border:none; border-radius:10px; font-weight:800; cursor:pointer;">Add to Cart</button></td>
+                <td><button onclick="location.href='cart.html'" style="width:100%; padding:15px; background:white; border:none; border-radius:10px; font-weight:800; cursor:pointer;">Add to Cart</button></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer class="footer-minimal">
+    <p>Designed for Supreme Goods Ltd by Director Thota Natesh. 105 Russell Street, Luton.</p>
+    <div class="footer-links">
+        <a href="director.html">Director Insights</a>
+        <a href="legal.html">Terms & Compliance</a>
+        <a href="contact.html">Contact HQ</a>
+    </div>
+</footer>
+
+</body>
+</html>

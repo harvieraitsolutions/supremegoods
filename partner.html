@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Brand Partners | Vendor Relations | Supreme Goods Ltd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { 
+            --primary: #10b981; 
+            --primary-glow: rgba(16, 185, 129, 0.4);
+            --bg: #030712; 
+            --glass: rgba(255,255,255,0.03); 
+            --border: rgba(255,255,255,0.1); 
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans'; }
+        body { background: var(--bg); color: white; line-height: 1.6; overflow-x: hidden; }
+
+        /* Unified Header Navigation */
+        header { 
+            padding: 20px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(3, 7, 18, 0.9);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+        }
+
+        .logo-box { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; color: white; font-weight: 800; }
+        .logo-box img { height: 35px; }
+
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { text-decoration: none; color: white; opacity: 0.6; font-size: 0.8rem; font-weight: 700; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; color: var(--primary); }
+
+        /* Hero Section */
+        .partner-hero { 
+            height: 70vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            background: radial-gradient(circle at center, #064e3b, #030712); 
+            padding-top: 80px;
+        }
+        .partner-hero h1 { font-size: 4.5rem; font-weight: 800; letter-spacing: -2px; line-height: 1.1; }
+        .hero-tag { background: rgba(16, 185, 129, 0.1); color: var(--primary); padding: 8px 20px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 20px; }
+
+        /* Brand Wall */
+        .brand-section { padding: 100px 10%; text-align: center; }
+        .brand-wall { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; margin-top: 50px; }
+        .brand-card { 
+            height: 160px; 
+            background: var(--glass); 
+            border: 1px solid var(--border); 
+            border-radius: 25px; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            transition: var(--transition); 
+            grayscale: 100%; 
+            opacity: 0.4;
+            cursor: pointer;
+        }
+        .brand-card:hover { 
+            grayscale: 0; 
+            opacity: 1; 
+            border-color: var(--primary); 
+            transform: translateY(-10px); 
+            background: rgba(16, 185, 129, 0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .brand-card i { font-size: 3.5rem; margin-bottom: 10px; }
+        .brand-card span { font-size: 0.6rem; font-weight: 800; letter-spacing: 1px; opacity: 0.6; }
+
+        /* Tier Section */
+        .tier-section { padding: 120px 10%; background: #000; position: relative; }
+        .tier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; }
+        
+        .tier-box { 
+            background: var(--glass); 
+            padding: 60px; 
+            border-radius: 40px; 
+            border: 1px solid var(--border); 
+            transition: var(--transition);
+        }
+        .tier-box:hover { border-color: var(--primary); transform: scale(1.02); }
+        .tier-box h3 { font-size: 2rem; margin-bottom: 20px; color: var(--primary); }
+        
+        .feature-list { list-style: none; margin: 30px 0; }
+        .feature-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; font-size: 0.9rem; opacity: 0.8; }
+        .feature-list i { color: var(--primary); font-size: 1.1rem; }
+
+        .btn-partner { 
+            width: 100%; 
+            padding: 20px; 
+            border-radius: 15px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            transition: 0.3s;
+            border: none;
+        }
+        .btn-filled { background: var(--primary); color: black; }
+        .btn-outline { background: transparent; border: 1px solid var(--primary); color: white; }
+        .btn-partner:hover { transform: translateY(-3px); box-shadow: 0 10px 30px var(--primary-glow); }
+
+        /* Registration Form */
+        .vendor-form-section { padding: 100px 10%; background: radial-gradient(circle at bottom right, #064e3b, #030712); }
+        .form-container { max-width: 900px; margin: 0 auto; background: var(--glass); padding: 60px; border-radius: 40px; border: 1px solid var(--border); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        input, select, textarea { width: 100%; padding: 18px; margin-bottom: 20px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 15px; outline: none; }
+        input:focus { border-color: var(--primary); }
+
+        /* Unified Footer */
+        footer { padding: 100px 10% 40px; border-top: 1px solid var(--border); background: #000; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+        .footer-links h4 { color: var(--primary); margin-bottom: 25px; font-size: 0.9rem; }
+        .footer-links a { display: block; color: white; opacity: 0.5; text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { opacity: 1; padding-left: 5px; color: var(--primary); }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="home.html" class="logo-box">
+            <img src="pic.png" alt="Logo"> <span>SUPREME PARTNERS</span>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="store.html">MEGA STORE</a></li>
+                <li><a href="b2b.html">B2B PORTAL</a></li>
+                <li><a href="director.html">EXECUTIVE</a></li>
+                <li><a href="contact.html">CONTACT HQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="partner-hero">
+        <span class="hero-tag">AUTHORIZED VENDOR NETWORK</span>
+        <h1>Global Vendor <br><span style="color: var(--primary)">Synergy.</span></h1>
+        <p style="opacity: 0.6; max-width: 700px; margin-top: 20px; font-size: 1.1rem;">
+            Supreme Goods Ltd represents the world's most innovative hardware brands. Our showroom at 105 Russell Street connects elite global manufacturers with the UK's most demanding technical professionals.
+        </p>
+        <button onclick="location.href='#apply'" style="margin-top: 30px; padding: 18px 40px; border-radius: 50px; background: var(--primary); border: none; color: black; font-weight: 800; cursor: pointer;">Register as Vendor</button>
+    </section>
+
+    <section class="brand-section">
+        <h2>Strategic Hardware Alliances</h2>
+        <p style="opacity: 0.5;">Our inventory is powered by the giants of technical engineering.</p>
+        <div class="brand-wall">
+            <div class="brand-card" onclick="location.href='store.html'"><i class="fab fa-nvidia"></i><span>NVIDIA AI</span></div>
+            <div class="brand-card" onclick="location.href='store.html'"><i class="fab fa-intel"></i><span>INTEL CORE</span></div>
+            <div class="brand-card" onclick="location.href='store.html'"><i class="fab fa-amd"></i><span>AMD RYZEN</span></div>
+            <div class="brand-card" onclick="location.href='store.html'"><i class="fab fa-microsoft"></i><span>MICROSOFT</span></div>
+            <div class="brand-card" onclick="location.href='store.html'"><i class="fab fa-apple"></i><span>APPLE SILICON</span></div>
+            <div class="brand-card" onclick="location.href='store.html'"><i class="fab fa-asus"></i><span>ASUS ROG</span></div>
+            <div class="brand-card" onclick="location.href='store.html'"><i class="fab fa-dell"></i><span>DELL ALIENWARE</span></div>
+            <div class="brand-card" onclick="location.href='store.html'"><i class="fab fa-hp"></i><span>HP OMEN</span></div>
+        </div>
+    </section>
+
+    <section class="tier-section">
+        <div style="text-align: center;">
+            <h2 style="font-size: 3rem;">Partnership Architecture</h2>
+            <p style="opacity: 0.5;">Select the tier that aligns with your brand's technical trajectory.</p>
+        </div>
+        <div class="tier-grid">
+            <div class="tier-box" style="border-left: 5px solid var(--primary);">
+                <h3>Strategic Partner</h3>
+                <p style="opacity: 0.7;">For global manufacturers seeking prime market positioning in the UK.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Full Inventory API Integration</li>
+                    <li><i class="fas fa-check-circle"></i> Priority "Supreme Nebula" Logistics</li>
+                    <li><i class="fas fa-check-circle"></i> Featured Placement on Home Dashboard</li>
+                    <li><i class="fas fa-check-circle"></i> Direct Executive Line to Thota Natesh</li>
+                </ul>
+                <button class="btn-partner btn-filled" onclick="location.href='#apply'">Register Interest</button>
+            </div>
+            <div class="tier-box">
+                <h3>Authorized Reseller</h3>
+                <p style="opacity: 0.7;">Standard distribution rights for regional hardware suppliers.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Standard Vendor Dashboard Access</li>
+                    <li><i class="fas fa-check-circle"></i> Direct-to-Consumer Fulfillment</li>
+                    <li><i class="fas fa-check-circle"></i> Monthly Performance Analytics</li>
+                    <li><i class="fas fa-check-circle"></i> Support Hub Access</li>
+                </ul>
+                <button class="btn-partner btn-outline" onclick="location.href='#apply'">Apply to Join</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="vendor-form-section" id="apply">
+        <div class="form-container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px;">Become a Verified Vendor</h2>
+            <form onsubmit="event.preventDefault(); alert('Vendor Application Transmitted to Executive Office.'); location.href='home.html';">
+                <div class="form-grid">
+                    <input type="text" placeholder="Brand Name" required>
+                    <input type="text" placeholder="Corporate HQ City" required>
+                    <input type="email" placeholder="Business Contact Email" required>
+                    <select required>
+                        <option value="">Proposed Tier</option>
+                        <option>Strategic Partner</option>
+                        <option>Authorized Reseller</option>
+                        <option>Sustainability Partner</option>
+                    </select>
+                </div>
+                <textarea rows="5" placeholder="Briefly describe your hardware portfolio and UK market goals..." required></textarea>
+                <button type="submit" class="btn-partner btn-filled">Submit Requisition</button>
+            </form>
+            <p style="text-align: center; font-size: 0.75rem; opacity: 0.5; margin-top: 25px;">
+                All applications are personally reviewed by the Director's Office within 72 business hours.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <h3 style="margin-bottom: 20px;">SUPREME GOODS LTD</h3>
+                <p style="font-size: 0.8rem; opacity: 0.5;">Headquarters: 105 Russell Street, Luton, UK</p>
+                <p style="font-size: 0.8rem; opacity: 0.5;">Director: Thota Natesh</p>
+            </div>
+            <div class="footer-links">
+                <h4>Infrastructure</h4>
+                <a href="home.html">Home Dashboard</a>
+                <a href="store.html">Mega Store</a>
+                <a href="logistics.html">Shipping Nebula</a>
+                <a href="b2b.html">B2B Solutions</a>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <a href="support.html">Live Concierge</a>
+                <a href="faq.html">Support Matrix</a>
+                <a href="legal.html">Compliance Hub</a>
+                <a href="green-tech.html">Sustainability</a>
+            </div>
+            <div class="footer-links">
+                <h4>Global HQ</h4>
+                <a href="director.html">Director Suite</a>
+                <a href="careers.html">Join Team</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="community.html">Social Feed</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

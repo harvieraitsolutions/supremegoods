@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Join Supreme Goods Ltd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #818cf8;
+            --primary-glow: rgba(129, 140, 248, 0.4);
+            --bg-dark: #020617;
+            --glass: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
+
+        /* Unified Header */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%; z-index: 1000;
+            background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo-box { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; color: white; }
+        .logo-box img { height: 40px; }
+
+        .nav-matrix { display: flex; gap: 25px; list-style: none; }
+        .nav-matrix a { text-decoration: none; color: white; font-size: 0.8rem; font-weight: 700; opacity: 0.5; transition: 0.3s; }
+        .nav-matrix a:hover { opacity: 1; color: var(--primary); }
+
+        /* Career Hero */
+        .career-hero {
+            height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            padding: 0 10%; background: radial-gradient(circle at center, #1e1b4b, #020617);
+        }
+
+        .career-hero h1 { font-size: 4.5rem; font-weight: 800; margin-bottom: 20px; }
+
+        /* Job Grid */
+        .job-section { padding: 100px 10%; }
+        .job-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+
+        .job-card {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            padding: 40px; border-radius: 35px; transition: var(--transition);
+        }
+
+        .job-card:hover { border-color: var(--primary); transform: translateY(-10px); background: rgba(255,255,255,0.05); }
+
+        .job-tag { background: rgba(129, 140, 248, 0.1); color: var(--primary); padding: 5px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; }
+
+        .apply-form { padding: 100px 10%; background: #000; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+        input, textarea, select {
+            width: 100%; padding: 18px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
+            border-radius: 12px; color: white; margin-bottom: 20px; outline: none;
+        }
+
+        .btn-supreme {
+            background: var(--primary); color: white; padding: 20px 40px; border-radius: 50px;
+            font-weight: 800; border: none; cursor: pointer; transition: 0.3s;
+        }
+
+        /* Footer Add-on */
+        footer { padding: 80px 10% 40px; border-top: 1px solid var(--glass-border); background: #000; text-align: center; }
+        .footer-nav { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+        .footer-nav a { color: white; opacity: 0.5; text-decoration: none; font-size: 0.8rem; transition: 0.3s; }
+        .footer-nav a:hover { opacity: 1; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="home.html" class="logo-box">
+            <img src="pic.png" alt="Logo">
+            <span style="letter-spacing: 2px;">SUPREME TALENT</span>
+        </a>
+        <ul class="nav-matrix">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="director.html">Director</a></li>
+            <li><a href="careers.html" style="opacity: 1; color: var(--primary);">Careers</a></li>
+            <li><a href="partner.html">Partners</a></li>
+        </ul>
+    </header>
+
+    <section class="career-hero">
+        <div>
+            <h1 id="hero-title">Architect the <br><span style="color: var(--primary)">Next Evolution.</span></h1>
+            <p style="opacity: 0.6; max-width: 600px; margin: 0 auto;">Supreme Goods Ltd is more than a retailer. We are a technical collective headquartered in Luton, driven by Director Thota Natesh's vision for excellence.</p>
+        </div>
+    </section>
+
+    <section class="job-section">
+        <h2 style="margin-bottom: 50px; font-size: 2.5rem;">Current Openings</h2>
+        <div class="job-grid">
+            <div class="job-card">
+                <span class="job-tag">ENGINEERING</span>
+                <h3 style="margin-top: 15px;">Senior Hardware Architect</h3>
+                <p style="opacity: 0.5; margin: 20px 0;">Lead the design of our next-gen Supreme Custom Workstations. Expertise in thermal dynamics required.</p>
+                <div style="display: flex; gap: 20px; font-size: 0.8rem; opacity: 0.7;">
+                    <span><i class="fas fa-map-marker-alt"></i> Luton, UK</span>
+                    <span><i class="fas fa-clock"></i> Full-Time</span>
+                </div>
+                <button class="btn-supreme" style="margin-top: 30px; padding: 12px 30px; font-size: 0.8rem;" onclick="location.href='#apply'">Apply Now</button>
+            </div>
+
+            <div class="job-card">
+                <span class="job-tag">LOGISTICS</span>
+                <h3 style="margin-top: 15px;">Global Operations Lead</h3>
+                <p style="opacity: 0.5; margin: 20px 0;">Manage the Supreme Logistics Nebula. Experience in international trade and VAT compliance is essential.</p>
+                <div style="display: flex; gap: 20px; font-size: 0.8rem; opacity: 0.7;">
+                    <span><i class="fas fa-map-marker-alt"></i> Remote / Luton</span>
+                    <span><i class="fas fa-clock"></i> Full-Time</span>
+                </div>
+                <button class="btn-supreme" style="margin-top: 30px; padding: 12px 30px; font-size: 0.8rem;" onclick="location.href='#apply'">Apply Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="apply-form" id="apply">
+        <div class="form-grid">
+            <div>
+                <h2>The Supreme Standard</h2>
+                <p style="opacity: 0.6; margin-top: 20px;">We look for individuals who don't just understand technology, but anticipate its trajectory. Join us at 105 Russell Street and build your legacy.</p>
+                <div style="margin-top: 50px;">
+                    <p style="font-weight: 800;">Director's Office Hotline:</p>
+                    <p style="color: var(--primary);">+44 7398 527022</p>
+                </div>
+            </div>
+            <form onsubmit="event.preventDefault(); alert('Application Transmitted to Thota Natesh\'s Office'); location.href='home.html';">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <select required>
+                    <option value="">Select Department</option>
+                    <option>Hardware Design</option>
+                    <option>Global Logistics</option>
+                    <option>Customer Concierge</option>
+                </select>
+                <textarea rows="5" placeholder="Why do you want to join Supreme Goods Ltd?" required></textarea>
+                <button type="submit" class="btn-supreme" style="width: 100%;">Submit Portfolio</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-nav">
+            <a href="home.html">Home Dashboard</a>
+            <a href="director.html">Director Insights</a>
+            <a href="legal.html">Privacy & Compliance</a>
+            <a href="contact.html">Global HQ</a>
+        </div>
+        <p style="opacity: 0.5; font-size: 0.8rem;">&copy; 2026 SUPREME GOODS LTD | 105 Russell Street, Luton | Director: Thota Natesh</p>
+    </footer>
+
+</body>
+</html>

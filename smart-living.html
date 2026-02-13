@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Smart Living | Supreme Goods Ltd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --bg-light: #0a0e17;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans'; }
+        body { background: var(--bg-light); color: white; overflow-x: hidden; line-height: 1.6; }
+
+        /* Navigation Matrix */
+        header {
+            padding: 25px 5%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10, 14, 23, 0.9); backdrop-filter: blur(20px);
+            position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border);
+        }
+
+        .logo-box { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; color: white; }
+        .logo-box img { height: 40px; }
+
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: white; opacity: 0.6; font-weight: 600; font-size: 0.8rem; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; color: var(--primary); }
+
+        /* AI Hero Section */
+        .ai-hero {
+            padding: 180px 10% 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
+            background: radial-gradient(circle at bottom left, #003366, transparent);
+        }
+
+        .ai-hero h1 { font-size: 5rem; line-height: 1; margin-bottom: 25px; font-weight: 800; letter-spacing: -2px; }
+        .hero-visual {
+            background: var(--glass); border: 1px solid var(--border);
+            height: 450px; border-radius: 50% 50% 30% 70% / 50% 30% 70% 50%;
+            animation: morph 10s infinite alternate;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 50px rgba(0, 210, 255, 0.1);
+        }
+
+        @keyframes morph {
+            0% { border-radius: 50% 50% 30% 70% / 50% 30% 70% 50%; }
+            100% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        }
+
+        /* Status & Analytics Hub */
+        .controls-hub { padding: 100px 10%; background: #000; }
+        .hub-title { text-align: center; margin-bottom: 60px; }
+
+        .control-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+        .status-card {
+            background: var(--glass); padding: 35px; border-radius: 30px;
+            border: 1px solid var(--border); transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .status-card:hover { border-color: var(--primary); transform: translateY(-10px); background: rgba(255,255,255,0.08); }
+
+        .icon-circle {
+            width: 60px; height: 60px; border-radius: 50%; background: var(--primary);
+            display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0,210,255,0.3); font-size: 1.5rem;
+        }
+
+        .status-toggle {
+            margin-top: 20px; display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.8rem; font-weight: 700;
+        }
+
+        /* Interactive Showcase */
+        .showcase { padding: 120px 10%; display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; }
+
+        .ai-device-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+            border-radius: 40px; padding: 70px; border: 1px solid var(--border);
+            position: relative; overflow: hidden;
+        }
+
+        .ai-device-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(from 180deg at 50% 50%, var(--primary), transparent);
+            animation: rotate 12s linear infinite; z-index: -1; opacity: 0.1;
+        }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* Director Badge */
+        .director-badge {
+            margin-top: 50px; background: rgba(0,210,255,0.05); padding: 25px;
+            border-radius: 20px; border-left: 5px solid var(--primary);
+            display: flex; align-items: center; gap: 20px; cursor: pointer;
+            transition: 0.3s;
+        }
+        .director-badge:hover { background: rgba(0,210,255,0.15); }
+
+        /* Tech Details Section */
+        .tech-matrix { padding: 80px 10%; background: rgba(255,255,255,0.02); }
+        .matrix-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .matrix-item h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.2rem; }
+        .matrix-item p { opacity: 0.6; font-size: 0.9rem; }
+
+        /* Footer Hub */
+        footer { padding: 80px 10% 40px; border-top: 1px solid var(--border); background: #000; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+        .footer-nav h4 { color: var(--primary); margin-bottom: 20px; font-size: 0.9rem; }
+        .footer-nav a { display: block; color: white; opacity: 0.5; text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-nav a:hover { opacity: 1; color: var(--primary); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="home.html" class="logo-box">
+            <img src="pic.png" alt="Logo">
+            <span style="font-weight: 800; letter-spacing: 1px;">SUPREME AI</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="home.html">HOME</a></li>
+            <li><a href="store.html">STORE</a></li>
+            <li><a href="gaming.html">GAMING</a></li>
+            <li><a href="smart-living.html" style="color: var(--primary); opacity: 1;">SMART LIVING</a></li>
+            <li><a href="product-detail.html">DEEP DIVE</a></li>
+        </ul>
+    </header>
+
+    <section class="ai-hero">
+        <div>
+            <span style="background: rgba(0,210,255,0.1); color: var(--primary); padding: 5px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; letter-spacing: 2px;">NEURAL INTEGRATION v4.2</span>
+            <h1 id="dynamic-h1">The Home, <br><span style="color: var(--primary)">Reimagined.</span></h1>
+            <p style="opacity: 0.7; font-size: 1.2rem; line-height: 1.6; margin-bottom: 40px; max-width: 600px;">
+                Supreme Goods Ltd integrates artificial intelligence into your hardware ecosystem. From thermal optimization to predictive security, we bring the future to 105 Russell Street and your doorstep.
+            </p>
+            <div class="director-badge" onclick="location.href='director.html'">
+                <i class="fas fa-microchip" style="font-size: 2.5rem; color: var(--primary);"></i>
+                <div>
+                    <p style="font-size: 0.7rem; opacity: 0.6; font-weight: 800;">EXECUTIVE VISION</p>
+                    <p style="font-weight: 800; font-size: 1.1rem;">DIRECTOR THOTA NATESH</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <i class="fas fa-brain" style="font-size: 12rem; color: var(--primary); filter: drop-shadow(0 0 40px var(--primary));"></i>
+        </div>
+    </section>
+
+    <section class="controls-hub">
+        <div class="hub-title">
+            <h2 style="font-size: 3rem; font-weight: 800;">Real-Time Status</h2>
+            <p style="opacity: 0.5;">Manage your connected Supreme nodes globally.</p>
+        </div>
+        
+        <div class="control-grid">
+            <div class="status-card" onclick="location.href='faq.html'">
+                <div class="icon-circle"><i class="fas fa-lightbulb"></i></div>
+                <h4>Smart Illumination</h4>
+                <div class="status-toggle">
+                    <span style="color: #43e97b;">● Online</span>
+                    <i class="fas fa-toggle-on" style="color: var(--primary); font-size: 1.2rem;"></i>
+                </div>
+            </div>
+            <div class="status-card" onclick="location.href='legal.html'">
+                <div class="icon-circle" style="background: #ff5f6d;"><i class="fas fa-shield-alt"></i></div>
+                <h4>AI Shield Security</h4>
+                <div class="status-toggle">
+                    <span style="color: #ff5f6d;">● High Priority</span>
+                    <i class="fas fa-lock" style="font-size: 1.2rem;"></i>
+                </div>
+            </div>
+            <div class="status-card" onclick="location.href='green-tech.html'">
+                <div class="icon-circle" style="background: #fa709a;"><i class="fas fa-fan"></i></div>
+                <h4>Eco-Climate Control</h4>
+                <div class="status-toggle">
+                    <span style="color: #fa709a;">22°C Opti-Mode</span>
+                    <i class="fas fa-leaf" style="font-size: 1.2rem;"></i>
+                </div>
+            </div>
+            <div class="status-card" onclick="location.href='dashboard.html'">
+                <div class="icon-circle" style="background: #f6d365;"><i class="fas fa-chart-line"></i></div>
+                <h4>Efficiency Stats</h4>
+                <div class="status-toggle">
+                    <span style="color: #f6d365;">+14% Energy Save</span>
+                    <i class="fas fa-bolt" style="font-size: 1.2rem;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-matrix">
+        <div class="matrix-grid">
+            <div class="matrix-item">
+                <h3>Quantum Hub Protocol</h3>
+                <p>All Smart Living devices communicate via a dedicated Supreme Mesh network, ensuring zero latency and 256-bit encryption for your 105 Russell St hardware.</p>
+            </div>
+            <div class="matrix-item">
+                <h3>Predictive Thermal Tuning</h3>
+                <p>Direct integration with your <a href="product-detail.html" style="color: var(--primary); text-decoration: none;">GPU architecture</a> allows the hub to preemptively cool your workspace based on render load.</p>
+            </div>
+            <div class="matrix-item">
+                <h3>Logistics Awareness</h3>
+                <p>Your hub syncs with the <a href="tracking.html" style="color: var(--primary); text-decoration: none;">Supreme Tracking Nebula</a> to prep your environment for hardware arrivals.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase">
+        <div class="ai-device-card">
+            <span style="color: var(--primary); font-weight: 800; letter-spacing: 3px; font-size: 0.7rem;">COMMAND CENTER FLAGSHIP</span>
+            <h2 style="font-size: 3.5rem; margin: 20px 0; font-weight: 800; line-height: 1.1;">Supreme Neural Hub v4</h2>
+            <p style="opacity: 0.7; margin-bottom: 40px; font-size: 1.1rem;">The central nervous system for your technical lifestyle. Learns habits, optimizes solar energy flow via <a href="green-tech.html" style="color:white; font-weight:bold;">Green Tech</a>, and secures your data nodes.</p>
+            <ul style="list-style: none; opacity: 0.8;">
+                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;"><i class="fas fa-check-circle" style="color: var(--primary);"></i> Multi-Node Voice Recognition</li>
+                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;"><i class="fas fa-check-circle" style="color: var(--primary);"></i> Predictive Habit Analysis Engine</li>
+                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;"><i class="fas fa-check-circle" style="color: var(--primary);"></i> Dynamic Solar Grid Management</li>
+            </ul>
+            <button class="btn-partner btn-filled" onclick="location.href='cart.html'" style="margin-top: 40px; background: var(--primary); border: none; padding: 20px 40px; border-radius: 15px; font-weight: 800; cursor: pointer; transition: 0.3s; color: black; text-transform: uppercase;">Aquire Hub v4</button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div class="status-card" onclick="location.href='contact.html'">
+                <h3>Global Support Concierge</h3>
+                <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 10px;">Direct technical line for smart integration: <br><strong>+44 7398 527022</strong></p>
+            </div>
+            <div class="status-card" style="background: var(--primary); color: black;" onclick="location.href='rewards.html'">
+                <h3 style="color: black;">Upgrade to AI Platinum</h3>
+                <p style="font-weight: 700;">Earn 5,000 S-Credits upon setup.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-nav">
+                <h3 style="margin-bottom: 20px;">SUPREME GOODS LTD</h3>
+                <p style="font-size: 0.85rem; opacity: 0.5;">Luton Headquarters: 105 Russell Street</p>
+                <p style="font-size: 0.85rem; opacity: 0.5;">Under Directorship: Thota Natesh</p>
+            </div>
+            <div class="footer-nav">
+                <h4>System Architecture</h4>
+                <a href="home.html">Home Dashboard</a>
+                <a href="store.html">Hardware Store</a>
+                <a href="compare.html">Specs Compare</a>
+                <a href="smart-living.html">AI Smart Living</a>
+            </div>
+            <div class="footer-nav">
+                <h4>Corporate & Ethics</h4>
+                <a href="director.html">Director Suite</a>
+                <a href="green-tech.html">Sustainability Hub</a>
+                <a href="legal.html">Compliance & Legal</a>
+                <a href="b2b.html">B2B Portal</a>
+            </div>
+            <div class="footer-nav">
+                <h4>User Hub</h4>
+                <a href="dashboard.html">Command Center</a>
+                <a href="rewards.html">Loyalty Rewards</a>
+                <a href="tracking.html">Order Tracker</a>
+                <a href="faq.html">Support Matrix</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

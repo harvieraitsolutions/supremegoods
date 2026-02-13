@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart FAQ | Support Matrix | Supreme Goods Ltd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { 
+            --primary: #f59e0b; 
+            --bg: #0f172a; 
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg); color: white; line-height: 1.6; }
+
+        /* Navigation Header */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%; z-index: 1000;
+            background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo-box { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; color: white; }
+        .logo-box img { height: 35px; }
+
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { text-decoration: none; color: white; font-size: 0.8rem; font-weight: 700; opacity: 0.5; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; color: var(--primary); }
+
+        /* FAQ Wrapper */
+        .faq-wrapper { max-width: 1000px; margin: 120px auto 100px; padding: 0 20px; }
+        
+        .faq-category-label { 
+            color: var(--primary); font-weight: 800; letter-spacing: 2px; 
+            font-size: 0.7rem; text-transform: uppercase; margin-top: 50px; display: block;
+        }
+
+        .accordion { margin-top: 20px; }
+        .accordion-item { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; margin-bottom: 15px; overflow: hidden; transition: var(--transition); }
+        .accordion-item:hover { border-color: var(--primary); background: rgba(255,255,255,0.05); }
+        
+        .accordion-header { padding: 25px 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .accordion-header h3 { font-size: 1rem; font-weight: 600; padding-right: 20px; }
+        
+        .accordion-content { padding: 0 30px; max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.5s ease; opacity: 0; }
+        .accordion-item.open .accordion-content { max-height: 500px; padding: 0 30px 30px; opacity: 1; }
+        .accordion-item.open .fa-chevron-down { transform: rotate(180deg); color: var(--primary); }
+
+        .content-link { color: var(--primary); text-decoration: none; font-weight: 700; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .content-link:hover { border-bottom-color: var(--primary); }
+
+        /* Contact CTA */
+        .contact-box { margin-top: 80px; background: var(--primary); color: black; padding: 60px; border-radius: 40px; text-align: center; }
+        .contact-box h2 { font-size: 2.5rem; font-weight: 800; }
+        .btn-call { display: inline-block; margin-top: 25px; background: black; color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 800; transition: 0.3s; }
+        .btn-call:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        footer { text-align: center; padding: 40px; opacity: 0.4; font-size: 0.8rem; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="home.html" class="logo-box">
+            <img src="pic.png" alt="Logo">
+            <span style="font-weight: 800;">SUPREME SUPPORT</span>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="store.html">STORE</a></li>
+                <li><a href="b2b.html">CORPORATE</a></li>
+                <li><a href="support.html">CONCIERGE</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="faq-wrapper">
+        <h1 style="text-align: center; font-size: 4rem; font-weight: 800; margin-bottom: 10px;">Support <span style="color: var(--primary)">Matrix</span></h1>
+        <p style="text-align: center; opacity: 0.5; max-width: 600px; margin: 0 auto;">Comprehensive intelligence for the Supreme Goods Ltd ecosystem. From hardware specs to global trade compliance.</p>
+
+        <span class="faq-category-label">Orders & Logistics</span>
+        <div class="accordion">
+            <div class="accordion-item" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    <h3>How can I track my "Supreme Logistics Nebula" shipment?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Once your order is verified at our Luton HQ, you will receive a unique tracking ID. You can monitor the real-time location and environmental conditions of your hardware via our <a href="tracking.html" class="content-link">Order Tracking Nebula</a>.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    <h3>What are the lead times for international deliveries?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>UK orders typically arrive within 24 hours. International shipments vary by zone: EU (2-4 days), NA (3-5 days), and Asia (5-7 days). For full tax and duty details, visit our <a href="logistics.html" class="content-link">Global Logistics</a> page.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    <h3>Can I pick up my order directly from 105 Russell Street?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, Supreme Goods Ltd offers an "Executive Pickup" service. Simply select "Local Pickup" during checkout. Our concierge will notify you when your item is ready for collection at our Luton headquarters.</p>
+                </div>
+            </div>
+        </div>
+
+        <span class="faq-category-label">Technical & Products</span>
+        <div class="accordion">
+            <div class="accordion-item" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    <h3>What makes the "Supreme Edition" GPUs different from standard cards?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Supreme Edition components undergo rigorous binning processes and feature custom vapor chamber cooling designed by our engineers. You can compare specific technical delta values on our <a href="compare.html" class="content-link">Comparison Engine</a>.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    <h3>How does the AI Smart Home Neural Hub integrate with my existing devices?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>The Supreme Neural Hub uses a universal protocol to bridge IoT devices. It utilizes predictive habit analysis to optimize your environment. Detailed setup guides are available on the <a href="smart-living.html" class="content-link">Smart Living</a> portal.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    <h3>Are your products compatible with e-sports tournament standards?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Absolutely. Our <a href="gaming.html" class="content-link">Gaming Pro-Suite</a> peripherals are engineered for ultra-low latency and are verified by professional athletes for competitive integrity.</p>
+                </div>
+            </div>
+        </div>
+
+        <span class="faq-category-label">Corporate & Ethics</span>
+        <div class="accordion">
+            <div class="accordion-item" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    <h3>Do you offer bulk discounts for enterprise clients?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, we have a specialized tier system for SME and Enterprise partners. For custom quotes and tax-exempt international procurement, please visit our <a href="b2b.html" class="content-link">B2B Solutions Hub</a>.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    <h3>What is Supreme Goods Ltd's commitment to sustainability?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>We operate a zero-waste hardware lifecycle. Through our <a href="green-tech.html" class="content-link">Sustainability Program</a>, you can recycle old components in exchange for Supreme Credits, supporting a circular tech economy.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    <h3>Can I contact Director Thota Natesh for strategic partnerships?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Strategic inquiries are handled by the Executive Office. You can learn more about the Director’s vision on the <a href="director.html" class="content-link">Executive Suite</a> page or submit a formal partnership request via our <a href="partner.html" class="content-link">Vendor Relations</a> portal.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-box">
+            <h2>Can't find your answer?</h2>
+            <p style="margin: 20px 0; opacity: 0.8;">Our 24/7 technical concierge is standing by to provide bespoke assistance for your tech journey.</p>
+            <p style="font-weight: 800; font-size: 2rem;">+44 7398 527022</p>
+            <a href="contact.html" class="btn-call">Transmit Inquiry</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SUPREME GOODS LTD | 105 Russell Street, Luton | <a href="legal.html" style="color: white; opacity: 0.5; text-decoration: none;">Legal Hub</a></p>
+    </footer>
+
+    <script>
+        function toggleAccordion(element) {
+            // Close all other items
+            const items = document.querySelectorAll('.accordion-item');
+            items.forEach(item => {
+                if (item !== element) {
+                    item.classList.remove('open');
+                }
+            });
+            // Toggle current item
+            element.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

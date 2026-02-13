@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supreme Goods Ltd | Premium Electronics Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Dynamic Palette Variables */
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.5);
+            --bg-dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        /* Live Background Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.6;
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(100%, 80%); }
+        }
+
+        /* Professional Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .logo-container img {
+            height: 50px;
+            filter: drop-shadow(0 0 10px var(--primary-glow));
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Mega Navigation */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        /* Color Palette Switcher */
+        .theme-engine {
+            display: flex;
+            gap: 10px;
+            background: var(--glass);
+            padding: 8px 15px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .color-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .color-dot:hover { transform: scale(1.2); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 700px;
+        }
+
+        .hero-content h2 {
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            padding: 18px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 10px 30px var(--primary-glow);
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--primary-glow);
+        }
+
+        /* 25 Pages Quick Access Grid */
+        .page-directory {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .page-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .page-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary);
+            transform: translateY(-10px);
+        }
+
+        .page-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0,0,0,0.5);
+            padding: 80px 5% 40px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-info h3 { margin-bottom: 20px; font-size: 1.8rem; }
+        .footer-info p { opacity: 0.6; line-height: 1.8; margin-bottom: 10px; }
+
+        .footer-links h4 { margin-bottom: 25px; color: var(--primary); }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 12px; }
+        .footer-links a { text-decoration: none; color: white; opacity: 0.6; transition: 0.3s; }
+        .footer-links a:hover { opacity: 1; padding-left: 10px; color: var(--primary); }
+
+        /* Interactive Elements */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: 0.1s;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="cursor" id="cursor"></div>
+
+    <div id="bg-canvas">
+        <div class="blob" id="blob1" style="left: 10%; top: 20%; background: #6366f1;"></div>
+        <div class="blob" id="blob2" style="right: 10%; bottom: 20%; background: #a855f7; animation-delay: -5s;"></div>
+    </div>
+
+    <header>
+        <div class="logo-container" onclick="location.href='home.html'">
+            <img src="pic.png" alt="Supreme Goods Logo">
+            <div class="logo-text">
+                <h1>SUPREME GOODS</h1>
+                <span style="font-size: 0.6rem; letter-spacing: 3px; opacity: 0.6;">TECH EXCELLENCE</span>
+            </div>
+        </div>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="store.html">MEGA STORE</a></li>
+                <li><a href="gaming.html">GAMING</a></li>
+                <li><a href="director.html">DIRECTOR</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+
+        <div class="theme-engine">
+            <div class="color-dot" style="background: #6366f1;" onclick="changeTheme('#6366f1', '#a855f7')"></div>
+            <div class="color-dot" style="background: #00f2fe;" onclick="changeTheme('#00f2fe', '#4facfe')"></div>
+            <div class="color-dot" style="background: #f093fb;" onclick="changeTheme('#f093fb', '#f5576c')"></div>
+            <div class="color-dot" style="background: #43e97b;" onclick="changeTheme('#43e97b', '#38f9d7')"></div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2 id="hero-title">Elevating the <br><span style="color: var(--primary)">Digital Era.</span></h2>
+            <p>Supreme Goods Ltd brings you the world's most advanced electronics with a seamless, high-performance shopping experience designed for the future.</p>
+            <div class="cta-group">
+                <a href="store.html" class="btn-primary">Explore Products</a>
+                <a href="#pages" class="btn-primary" style="background: var(--glass); border: 1px solid var(--glass-border);">View 25 Modules</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-directory" id="pages">
+        <div class="section-title">
+            <h3>Website Infrastructure</h3>
+            <p>25 Specialized Interactive Modules</p>
+        </div>
+        <div class="directory-grid">
+            <div class="page-card" onclick="location.href='store.html'">
+                <i class="fas fa-shopping-cart"></i>
+                <h4>Mega Store</h4>
+                <p>Advanced Inventory</p>
+            </div>
+            <div class="page-card" onclick="location.href='product-detail.html'">
+                <i class="fas fa-microchip"></i>
+                <h4>Product Deep-Dive</h4>
+                <p>Technical 3D Specs</p>
+            </div>
+            <div class="page-card" onclick="location.href='gaming.html'">
+                <i class="fas fa-gamepad"></i>
+                <h4>Gaming Pro</h4>
+                <p>E-Sports Gear Hub</p>
+            </div>
+            <div class="page-card" onclick="location.href='smart-living.html'">
+                <i class="fas fa-robot"></i>
+                <h4>AI Smart Home</h4>
+                <p>Automation Hub</p>
+            </div>
+            <div class="page-card" onclick="location.href='director.html'">
+                <i class="fas fa-user-tie"></i>
+                <h4>Director Suite</h4>
+                <p>Thota Natesh Profile</p>
+            </div>
+            <div class="page-card" onclick="location.href='flash-sale.html'">
+                <i class="fas fa-bolt"></i>
+                <h4>Flash Nexus</h4>
+                <p>Live Countdown Deals</p>
+            </div>
+            <div class="page-card" onclick="location.href='compare.html'">
+                <i class="fas fa-balance-scale"></i>
+                <h4>Comparison Engine</h4>
+                <p>Side-by-Side Specs</p>
+            </div>
+            <div class="page-card" onclick="location.href='cart.html'">
+                <i class="fas fa-shopping-bag"></i>
+                <h4>Smart Cart</h4>
+                <p>Interactive Analytics</p>
+            </div>
+            <div class="page-card" onclick="location.href='checkout.html'">
+                <i class="fas fa-lock"></i>
+                <h4>Secure Checkout</h4>
+                <p>Multi-step Gateway</p>
+            </div>
+            <div class="page-card" onclick="location.href='dashboard.html'">
+                <i class="fas fa-user-circle"></i>
+                <h4>User Dashboard</h4>
+                <p>Personal Command Center</p>
+            </div>
+            <div class="page-card" onclick="location.href='tracking.html'">
+                <i class="fas fa-shipping-fast"></i>
+                <h4>Track Nebula</h4>
+                <p>Live Logistics Visuals</p>
+            </div>
+            <div class="page-card" onclick="location.href='b2b.html'">
+                <i class="fas fa-chart-line"></i>
+                <h4>B2B Solutions</h4>
+                <p>Corporate Bulk Portal</p>
+            </div>
+            <div class="page-card" onclick="location.href='blog.html'">
+                <i class="fas fa-newspaper"></i>
+                <h4>Tech Insights</h4>
+                <p>Reviews & Articles</p>
+            </div>
+            <div class="page-card" onclick="location.href='support.html'">
+                <i class="fas fa-headset"></i>
+                <h4>Live Concierge</h4>
+                <p>Help Center & AI Chat</p>
+            </div>
+            <div class="page-card" onclick="location.href='community.html'">
+                <i class="fas fa-users"></i>
+                <h4>Community Hub</h4>
+                <p>Social Tech Wall</p>
+            </div>
+            <div class="page-card" onclick="location.href='logistics.html'">
+                <i class="fas fa-globe-europe"></i>
+                <h4>Global Logistics</h4>
+                <p>International Trade</p>
+            </div>
+            <div class="page-card" onclick="location.href='green-tech.html'">
+                <i class="fas fa-leaf"></i>
+                <h4>Sustainability</h4>
+                <p>Refurbished Initiatives</p>
+            </div>
+            <div class="page-card" onclick="location.href='careers.html'">
+                <i class="fas fa-briefcase"></i>
+                <h4>Career Portal</h4>
+                <p>Join the Supreme Team</p>
+            </div>
+            <div class="page-card" onclick="location.href='partner.html'">
+                <i class="fas fa-handshake"></i>
+                <h4>Brand Partners</h4>
+                <p>Vendor Showroom</p>
+            </div>
+            <div class="page-card" onclick="location.href='search.html'">
+                <i class="fas fa-search"></i>
+                <h4>Advanced Search</h4>
+                <p>Elastic Filtering</p>
+            </div>
+            <div class="page-card" onclick="location.href='faq.html'">
+                <i class="fas fa-question-circle"></i>
+                <h4>Smart FAQ</h4>
+                <p>Interactive Accordions</p>
+            </div>
+            <div class="page-card" onclick="location.href='legal.html'">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Legal Hub</h4>
+                <p>Compliance & Privacy</p>
+            </div>
+            <div class="page-card" onclick="location.href='rewards.html'">
+                <i class="fas fa-award"></i>
+                <h4>Loyalty Rewards</h4>
+                <p>Membership Tiers</p>
+            </div>
+            <div class="page-card" onclick="location.href='contact.html'">
+                <i class="fas fa-map-marked-alt"></i>
+                <h4>Global HQ</h4>
+                <p>Direct Luton Contact</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>SUPREME GOODS</h3>
+                <p><i class="fas fa-user"></i> Director: <strong>Thota Natesh</strong></p>
+                <p><i class="fas fa-envelope"></i> contact@supremegoods.uk</p>
+                <p><i class="fas fa-phone"></i> +44 7398 527022</p>
+                <p><i class="fas fa-map-marker-alt"></i> 105 Russell Street, Luton, LU1 5EB, UK</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="store.html">Product Catalog</a></li>
+                    <li><a href="gaming.html">Gaming Universe</a></li>
+                    <li><a href="green-tech.html">Refurbished Hub</a></li>
+                    <li><a href="rewards.html">Membership</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="support.html">Help Center</a></li>
+                    <li><a href="tracking.html">Order Tracking</a></li>
+                    <li><a href="legal.html">Returns</a></li>
+                    <li><a href="legal.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Social</h4>
+                <ul>
+                    <li><a href="community.html">Instagram</a></li>
+                    <li><a href="partner.html">LinkedIn</a></li>
+                    <li><a href="community.html">Twitter (X)</a></li>
+                    <li><a href="community.html">Discord</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid var(--glass-border); padding-top: 30px; opacity: 0.5;">
+            &copy; 2026 SUPREME GOODS LTD. Engineered for Excellence.
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Live Theme Engine
+        function changeTheme(color1, color2) {
+            document.documentElement.style.setProperty('--primary', color1);
+            document.documentElement.style.setProperty('--primary-glow', color1 + '80');
+            document.documentElement.style.setProperty('--accent-gradient', `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)`);
+            
+            // Update Background Blobs
+            document.getElementById('blob1').style.background = color1;
+            document.getElementById('blob2').style.background = color2;
+
+            // Add an animation pop
+            document.getElementById('hero-title').style.transform = 'scale(1.02)';
+            setTimeout(() => {
+                document.getElementById('hero-title').style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // Scroll Parallax for Blobs
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.getElementById('blob1').style.transform = `translateY(${scrolled * 0.3}px)`;
+            document.getElementById('blob2').style.transform = `translateY(${scrolled * -0.2}px)`;
+        });
+    </script>
+</body>
+</html>

@@ -10,132 +10,110 @@
     <style>
         :root {
             --primary: #ff0055;
-            --primary-glow: rgba(255, 0, 85, 0.5);
-            --bg-dark: #050505;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #ffffff;
-            --gaming-gradient: linear-gradient(135deg, #ff0055 0%, #7000ff 100%);
+            --primary-glow: rgba(255, 0, 85, 0.1);
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
+        body { background: var(--bg-light); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
 
-        /* Global Dynamic Header (Interconnected) */
+        /* Navigation Header */
         header {
             position: fixed;
             top: 0; width: 100%; padding: 20px 5%; z-index: 1000;
-            background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        .logo-box { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .logo-box { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; color: var(--text-main); }
         .logo-box img { height: 40px; }
 
         .nav-matrix { display: flex; gap: 25px; list-style: none; }
         .nav-matrix a { 
-            text-decoration: none; color: white; font-size: 0.85rem; font-weight: 600; 
-            opacity: 0.6; transition: 0.3s; letter-spacing: 1px;
+            text-decoration: none; color: var(--text-main); font-size: 0.85rem; font-weight: 700; 
+            opacity: 0.6; transition: 0.3s;
         }
         .nav-matrix a:hover { opacity: 1; color: var(--primary); }
         .active-link { opacity: 1 !important; color: var(--primary) !important; border-bottom: 2px solid var(--primary); }
 
         /* Gaming Hero */
         .gaming-hero {
-            height: 80vh; background: radial-gradient(circle at top right, #1a0033, #050505);
+            height: 70vh; background: radial-gradient(circle at top right, #fff1f5, #f8fafc);
             display: flex; align-items: center; padding: 0 10%; position: relative; overflow: hidden;
+            margin-top: 80px;
         }
 
         .hero-tag {
-            background: var(--gaming-gradient); padding: 5px 15px; border-radius: 50px;
+            background: var(--primary); color: white; padding: 6px 18px; border-radius: 50px;
             font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 20px; display: inline-block;
         }
 
-        .gaming-hero h1 { font-size: 5rem; font-weight: 800; line-height: 1; margin-bottom: 20px; }
+        .gaming-hero h1 { font-size: 5rem; font-weight: 800; line-height: 1; margin-bottom: 25px; letter-spacing: -2px; }
         
-        /* Performance Toggle */
-        .performance-mode {
-            position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
-            background: var(--glass); padding: 30px; border-radius: 30px; border: 1px solid var(--glass-border);
-            text-align: center; width: 150px;
-        }
-
-        .toggle-switch {
-            width: 60px; height: 30px; background: #333; border-radius: 30px;
-            margin: 20px auto; position: relative; cursor: pointer;
-        }
-
-        .toggle-circle {
-            width: 22px; height: 22px; background: white; border-radius: 50%;
-            position: absolute; top: 4px; left: 4px; transition: 0.3s;
-        }
-
-        .rgb-active .toggle-switch { background: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
-        .rgb-active .toggle-circle { left: 34px; }
-
         /* Gear Grid */
         .gear-section { padding: 100px 10%; }
-        .category-tabs { display: flex; gap: 20px; margin-bottom: 50px; justify-content: center; }
+        .category-tabs { display: flex; gap: 15px; margin-bottom: 50px; justify-content: center; }
         .tab { 
-            padding: 12px 30px; background: var(--glass); border-radius: 12px; 
-            border: 1px solid var(--glass-border); cursor: pointer; transition: 0.3s;
+            padding: 12px 30px; background: white; border-radius: 12px; 
+            border: 1px solid var(--border); cursor: pointer; transition: 0.3s;
+            font-weight: 700; font-size: 0.85rem; color: var(--text-muted);
         }
-        .tab.active { background: var(--primary); border-color: var(--primary); }
+        .tab.active { background: var(--primary); border-color: var(--primary); color: white; }
 
         .gear-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 
         .gear-card {
-            background: var(--glass); border: 1px solid var(--glass-border);
-            border-radius: 30px; padding: 40px; position: relative; transition: var(--transition);
-            overflow: hidden; cursor: pointer;
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 30px; padding: 20px; transition: var(--transition);
+            cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
 
-        .gear-card:hover { transform: translateY(-15px) scale(1.02); border-color: var(--primary); }
+        .gear-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(255,0,85,0.08); }
 
         .gear-img { 
-            width: 100%; height: 250px; background: rgba(255,255,255,0.02); 
-            border-radius: 20px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center;
+            width: 100%; height: 250px; background: #f1f5f9; 
+            border-radius: 20px; margin-bottom: 25px; overflow: hidden;
         }
+        .gear-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .gear-card:hover .gear-img img { transform: scale(1.1); }
 
-        .gear-img i { font-size: 6rem; opacity: 0.1; transition: 0.5s; }
-        .gear-card:hover .gear-img i { opacity: 0.8; color: var(--primary); transform: rotate(-10deg); }
-
-        .price-tag { font-size: 1.8rem; font-weight: 800; margin: 15px 0; display: block; }
+        .price-tag { font-size: 1.5rem; font-weight: 800; margin: 15px 0; display: block; color: var(--text-main); }
 
         .buy-btn {
-            width: 100%; padding: 15px; border-radius: 15px; border: none;
-            background: white; color: black; font-weight: 700; cursor: pointer; transition: 0.3s;
+            width: 100%; padding: 16px; border-radius: 15px; border: none;
+            background: var(--text-main); color: white; font-weight: 800; cursor: pointer; transition: 0.3s;
+            text-transform: uppercase; letter-spacing: 1px;
         }
-        .buy-btn:hover { background: var(--primary); color: white; }
+        .buy-btn:hover { background: var(--primary); transform: scale(1.02); }
 
-        /* Pro-Spec Table */
-        .specs-container {
-            margin-top: 100px; background: var(--glass); padding: 60px;
-            border-radius: 40px; border: 1px solid var(--glass-border);
-        }
-
-        table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; padding: 20px; border-bottom: 1px solid var(--glass-border); color: var(--primary); }
-        td { padding: 20px; border-bottom: 1px solid var(--glass-border); opacity: 0.7; }
-
-        /* Interconnected Footer */
+        /* Footer */
         footer {
-            background: #000; padding: 80px 10% 40px; border-top: 1px solid var(--glass-border);
+            background: #ffffff; padding: 80px 10% 40px; border-top: 1px solid var(--border);
             display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px;
         }
+        .footer-brand h2 { font-weight: 800; margin-bottom: 20px; }
+        .footer-brand p { color: var(--text-muted); font-size: 0.9rem; }
+        .footer-nav h4 { font-weight: 800; margin-bottom: 25px; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
+        .footer-nav p { margin-bottom: 15px; }
+        .footer-nav a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .footer-nav a:hover { color: var(--primary); }
     </style>
 </head>
-<body id="gaming-body">
+<body>
 
     <header>
-        <div class="logo-box" onclick="location.href='home.html'">
+        <a href="home.html" class="logo-box">
             <img src="pic.png" alt="Supreme Logo">
             <div class="logo-text">
-                <h2 style="font-size: 1.2rem; letter-spacing: 1px;">SUPREME <span style="color: var(--primary)">GAMING</span></h2>
+                <h2 style="font-size: 1.2rem; letter-spacing: 1px; font-weight: 800;">SUPREME <span style="color: var(--primary)">GAMING</span></h2>
             </div>
-        </div>
+        </a>
         <ul class="nav-matrix">
             <li><a href="home.html">HOME</a></li>
             <li><a href="store.html">MEGA STORE</a></li>
@@ -147,130 +125,78 @@
 
     <section class="gaming-hero">
         <div class="hero-content">
-            <span class="hero-tag">ENGINEERED FOR VICTORY</span>
-            <h1>Unleash <br>Supreme <span style="color: var(--primary)">Power.</span></h1>
-            <p style="max-width: 500px; opacity: 0.6; line-height: 1.8; margin-bottom: 30px;">
-                Experience low-latency perfection. Our gaming peripherals are tested by professional athletes to ensure Thota Natesh's vision of peak performance.
+            <span class="hero-tag">PRO-SERIES 2026</span>
+            <h1>Victory is <br>in the <span style="color: var(--primary)">Hardware.</span></h1>
+            <p style="max-width: 600px; color: var(--text-muted); font-size: 1.2rem; margin-bottom: 35px; font-weight: 500;">
+                Engineered for sub-millisecond response times. Our gaming suite is curated by Director Thota Natesh to provide a competitive edge that feels like second nature.
             </p>
             <div style="display: flex; gap: 20px;">
-                <button class="buy-btn" onclick="location.href='store.html'" style="width: auto; padding: 18px 45px; background: var(--primary); color: white;">Explore Elite Gear</button>
-                <button class="buy-btn" onclick="location.href='community.html'" style="width: auto; padding: 18px 45px; background: transparent; color: white; border: 1px solid white;">Tournament Hub</button>
+                <button class="buy-btn" onclick="location.href='store.html'" style="width: auto; padding: 20px 50px;">Shop All Gear</button>
             </div>
-        </div>
-
-        <div class="performance-mode" id="performanceToggle">
-            <p style="font-size: 0.7rem; font-weight: 800;">RGB MODE</p>
-            <div class="toggle-switch">
-                <div class="toggle-circle"></div>
-            </div>
-            <p id="mode-status" style="font-size: 0.6rem; margin-top: 10px; opacity: 0.5;">STEALTH</p>
         </div>
     </section>
 
     <section class="gear-section">
         <div class="category-tabs">
-            <div class="tab active">All Gear</div>
-            <div class="tab" onclick="location.href='search.html'">Peripherals</div>
-            <div class="tab" onclick="location.href='search.html'">Monitors</div>
-            <div class="tab" onclick="location.href='search.html'">Gaming PCs</div>
+            <div class="tab active">Elite Collection</div>
+            <div class="tab" onclick="location.href='store.html'">Peripherals</div>
+            <div class="tab" onclick="location.href='store.html'">Monitors</div>
+            <div class="tab" onclick="location.href='store.html'">Desktop PC</div>
         </div>
 
         <div class="gear-grid">
             <div class="gear-card" onclick="location.href='product-detail.html'">
-                <div class="gear-img"><i class="fas fa-mouse"></i></div>
-                <h3>Supreme Ghost M1</h3>
-                <p style="opacity: 0.5; font-size: 0.8rem;">8000Hz Polling Rate • 26K DPI</p>
+                <div class="gear-img">
+                    <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&q=80&w=500" alt="Supreme Mouse">
+                </div>
+                <h3 style="font-weight: 800;">Supreme Ghost M1</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600;">8000Hz Polling • 26K Optical Sensor</p>
                 <span class="price-tag">£129.99</span>
                 <button class="buy-btn" onclick="event.stopPropagation(); location.href='cart.html'">Add to Loadout</button>
             </div>
             <div class="gear-card" onclick="location.href='product-detail.html'">
-                <div class="gear-img"><i class="fas fa-keyboard"></i></div>
-                <h3>Apex Mechanical Pro</h3>
-                <p style="opacity: 0.5; font-size: 0.8rem;">Magnetic Switches • RGB Sync</p>
+                <div class="gear-img">
+                    <img src="https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=500" alt="Supreme Keyboard">
+                </div>
+                <h3 style="font-weight: 800;">Apex Mechanical Pro</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600;">Magnetic Hall-Effect Switches</p>
                 <span class="price-tag">£199.00</span>
                 <button class="buy-btn" onclick="event.stopPropagation(); location.href='cart.html'">Add to Loadout</button>
             </div>
             <div class="gear-card" onclick="location.href='product-detail.html'">
-                <div class="gear-img"><i class="fas fa-headphones"></i></div>
-                <h3>Sonic Sphere V3</h3>
-                <p style="opacity: 0.5; font-size: 0.8rem;">Spatial Audio • Carbon Drivers</p>
+                <div class="gear-img">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=500" alt="Supreme Headset">
+                </div>
+                <h3 style="font-weight: 800;">Sonic Sphere V3</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600;">Spatial 7.1 Audio • Carbon Drivers</p>
                 <span class="price-tag">£249.50</span>
                 <button class="buy-btn" onclick="event.stopPropagation(); location.href='cart.html'">Add to Loadout</button>
             </div>
-        </div>
-
-        <div class="specs-container">
-            <h3 style="margin-bottom: 30px; font-size: 2rem;">Technical Comparison</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Standard Tech</th>
-                        <th>Supreme Gaming</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Response Time</td>
-                        <td>5ms</td>
-                        <td><span style="color: var(--primary)" onclick="location.href='compare.html'" style="cursor: pointer;">0.1ms (Ultra) <i class="fas fa-external-link-alt" style="font-size: 0.6rem;"></i></span></td>
-                    </tr>
-                    <tr>
-                        <td>Durability</td>
-                        <td>20M Clicks</td>
-                        <td>100M+ (Supreme Grade)</td>
-                    </tr>
-                    <tr>
-                        <td>Connectivity</td>
-                        <td>Standard 2.4GHz</td>
-                        <td>QuantumSync Low-Lat</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </section>
 
     <footer>
         <div class="footer-brand">
-            <h2 style="margin-bottom: 20px;">SUPREME GOODS LTD</h2>
-            <p>105 Russell Street, Luton, UK</p>
-            <p>Director: Thota Natesh</p>
-            <p>contact@supremegoods.uk</p>
+            <h2>SUPREME GOODS</h2>
+            <p>105 Russell Street, Luton, LU1 5EB, UK</p>
+            <p style="margin-top: 5px; font-weight: 700; color: var(--text-main);">Directed by Thota Natesh</p>
+            <p style="margin-top: 15px; font-size: 0.75rem;">© 2026 SUPREME GOODS LTD. All Rights Reserved.</p>
         </div>
-        <div>
-            <h4 style="margin-bottom: 20px; color: var(--primary);">Network</h4>
-            <p><a href="home.html" style="color: white; text-decoration: none;">Home Dashboard</a></p>
-            <p><a href="store.html" style="color: white; text-decoration: none;">Main Store</a></p>
-            <p><a href="smart-living.html" style="color: white; text-decoration: none;">Smart Living</a></p>
-            <p><a href="support.html" style="color: white; text-decoration: none;">Tech Support</a></p>
+        <div class="footer-nav">
+            <h4>Ecosystem</h4>
+            <p><a href="home.html">Dashboard</a></p>
+            <p><a href="store.html">Mega Store</a></p>
+            <p><a href="smart-living.html">Smart Living</a></p>
+            <p><a href="flash-sale.html">Flash Deals</a></p>
         </div>
-        <div style="text-align: right;">
-            <p>&copy; 2026 SUPREME TECH</p>
-            <div style="font-size: 2rem; margin-top: 20px; color: var(--primary);">
-                <i class="fab fa-discord" onclick="location.href='community.html'" style="cursor: pointer;"></i>
-                <i class="fab fa-twitch" onclick="location.href='community.html'" style="cursor: pointer;"></i>
-                <i class="fab fa-youtube" onclick="location.href='community.html'" style="cursor: pointer;"></i>
-            </div>
+        <div class="footer-nav">
+            <h4>Support Hub</h4>
+            <p><a href="support.html">Technical Concierge</a></p>
+            <p><a href="faq.html">Help Center</a></p>
+            <p><a href="legal.html">Warranty Policy</a></p>
+            <p><a href="contact.html">Contact Headquarters</a></p>
         </div>
     </footer>
 
-    <script>
-        const toggle = document.getElementById('performanceToggle');
-        const body = document.getElementById('gaming-body');
-        const status = document.getElementById('mode-status');
-
-        toggle.addEventListener('click', () => {
-            toggle.classList.toggle('rgb-active');
-            if(toggle.classList.contains('rgb-active')) {
-                body.style.boxShadow = "inset 0 0 100px rgba(255,0,85,0.2)";
-                status.innerText = "SUPREME RGB: ON";
-                status.style.color = "var(--primary)";
-            } else {
-                body.style.boxShadow = "none";
-                status.innerText = "STEALTH";
-                status.style.color = "white";
-            }
-        });
-    </script>
 </body>
 </html>

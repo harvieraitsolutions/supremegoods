@@ -371,6 +371,28 @@
                 grid.appendChild(card);
             });
         }
+        function addToCart(productId) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const product = products.find(p => p.id === productId);
+
+            const cleanPrice = parseFloat(product.price.replace("£",""));
+
+            cart.push({
+                id: product.id,
+                name: product.name,
+                price: cleanPrice,
+                image: `https://images.unsplash.com/photo-${product.img}?auto=format&fit=crop&q=80&w=500`,
+                link: "product-detail.html"
+            });
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            document.getElementById("cart-count").textContent = cart.length;
+        }
 
         function applyFilters() {
             const checkedBoxes = Array.from(document.querySelectorAll('.cat-filter:checked')).map(cb => cb.value);

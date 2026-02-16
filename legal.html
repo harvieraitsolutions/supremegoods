@@ -16,7 +16,7 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background: var(--bg); color: #cbd5e1; line-height: 1.8; overflow-x: hidden; }
+        body { background: var(--bg); color: #cbd5e1; line-height: 1.8; overflow-x: hidden; scroll-behavior: smooth; }
 
         header {
             position: fixed; top: 0; width: 100%; padding: 20px 5%; z-index: 1000;
@@ -32,25 +32,34 @@
         .nav-matrix a:hover { opacity: 1; color: var(--primary); }
 
         .legal-container { max-width: 1000px; margin: 150px auto; padding: 0 20px; }
-        .legal-card { background: var(--glass); border: 1px solid var(--border); border-radius: 30px; padding: 60px; margin-bottom: 40px; position: relative; }
         
-        .tab-menu { display: flex; gap: 10px; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 20px; overflow-x: auto; white-space: nowrap; }
+        .tab-menu { 
+            display: flex; gap: 10px; margin-bottom: 40px; border-bottom: 1px solid var(--border); 
+            padding-bottom: 20px; overflow-x: auto; white-space: nowrap; position: sticky; top: 100px; background: var(--bg); z-index: 100;
+        }
         .tab-btn { background: none; border: none; color: white; opacity: 0.5; cursor: pointer; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; padding: 10px 20px; transition: 0.3s; }
         .tab-btn:hover { opacity: 1; }
-        .tab-btn.active { opacity: 1; border-bottom: 2px solid white; }
+        .tab-btn.active { opacity: 1; border-bottom: 2px solid white; color: white; }
 
-        h2 { color: white; margin-bottom: 20px; font-size: 2.5rem; font-weight: 800; }
-        h3 { color: white; margin: 40px 0 15px; font-size: 1.4rem; font-weight: 600; border-left: 4px solid var(--primary); padding-left: 15px; }
-        
+        .policy-section { display: none; }
+        .policy-section.active { display: block; animation: fadeIn 0.5s ease; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .legal-card { background: var(--glass); border: 1px solid var(--border); border-radius: 30px; padding: 60px; margin-bottom: 40px; }
+        h2 { color: white; margin-bottom: 20px; font-size: 2.2rem; font-weight: 800; }
+        h3 { color: white; margin: 40px 0 15px; font-size: 1.3rem; font-weight: 600; border-left: 4px solid var(--primary); padding-left: 15px; }
+        p { margin-bottom: 15px; font-size: 0.95rem; }
+        ul { margin-left: 25px; margin-bottom: 20px; }
+        li { margin-bottom: 10px; font-size: 0.95rem; }
+
         .compliance-badge { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; border-left: 4px solid #10b981; margin-top: 50px; }
+        .highlight-box { background: rgba(245, 158, 11, 0.1); border: 1px solid #f59e0b; padding: 30px; border-radius: 20px; margin: 30px 0; color: #f59e0b; font-weight: 600; }
 
+        footer { padding: 80px 10% 40px; border-top: 1px solid var(--border); text-align: center; }
         .footer-nav { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; flex-wrap: wrap; }
         .footer-nav a { color: white; opacity: 0.4; text-decoration: none; font-size: 0.8rem; transition: 0.3s; }
         .footer-nav a:hover { opacity: 1; color: var(--primary); }
-
-        footer { padding: 80px 10% 40px; border-top: 1px solid var(--border); text-align: center; }
-        
-        .highlight-box { background: rgba(245, 158, 11, 0.1); border: 1px solid #f59e0b; padding: 30px; border-radius: 20px; margin: 30px 0; color: #f59e0b; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -65,65 +74,107 @@
             <li><a href="store.html">STORE</a></li>
             <li><a href="b2b.html">CORPORATE</a></li>
             <li><a href="faq.html">FAQ</a></li>
-            <li><a href="legal.html" style="opacity: 1; color: var(--primary);">COMPLIANCE</a></li>
+            <li><a href="legal.html" style="opacity: 1; border-bottom: 1px solid white;">COMPLIANCE</a></li>
         </ul>
     </header>
 
     <div class="legal-container">
         <div class="tab-menu">
-            <button class="tab-btn active">Privacy Policy</button>
-            <button class="tab-btn">Terms of Service</button>
-            <button class="tab-btn">Shipping & Refunds</button>
-            <button class="tab-btn">Cookie Policy</button>
-            <button class="tab-btn">Corporate Governance</button>
+            <button class="tab-btn active" onclick="showPolicy('privacy')">Privacy Policy</button>
+            <button class="tab-btn" onclick="showPolicy('terms')">Terms of Service</button>
+            <button class="tab-btn" onclick="showPolicy('refunds')">Shipping & Refunds</button>
+            <button class="tab-btn" onclick="showPolicy('cookies')">Cookie Policy</button>
+            <button class="tab-btn" onclick="showPolicy('security')">Security Matrix</button>
         </div>
 
-        <div class="legal-card">
-            <h2>Privacy & Global Data Integrity</h2>
-            <p style="font-size: 0.9rem; opacity: 0.6;">Document Ref: SG-PRV-2026-V4 | Last Updated: Feb 13, 2026</p>
-            
-            <h3>1. Data Sovereignty</h3>
-            <p>Supreme Goods Ltd, registered at 105 Russell Street, Luton, acts as the primary Data Controller. Under the stewardship of Director Thota Natesh, we ensure all user telemetry from the <a href="smart-living.html" style="color:white;">Supreme Neural Hub</a> and transactional data is encrypted using military-grade quantum protocols.</p>
+        <div id="privacy" class="policy-section active">
+            <div class="legal-card">
+                <h2>Privacy & Data Sovereignty</h2>
+                <p><strong>Effective Date:</strong> February 16, 2026</p>
+                <p>Supreme Goods Ltd is committed to protecting your personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.</p>
+                
+                <h3>1. Data Controller</h3>
+                <p>The data controller for this website is Supreme Goods Ltd, 105 Russell Street, Luton, LU1 5EB. Under the directorship of Thota Natesh, our Data Protection Officer ensures all technical information remains encrypted.</p>
 
-            <h3>2. Information We Harvest</h3>
-            <p>We strictly limit data collection to technical necessity. This includes:</p>
-            <ul style="margin-left: 20px; margin-top: 10px;">
-                <li>Identity Verification for B2B Corporate Accounts.</li>
-                <li>Hardware configuration profiles for warranty optimization.</li>
-                <li>Logistics telemetry for the <a href="tracking.html" style="color:white;">Order Tracking Nebula</a>.</li>
-            </ul>
+                <h3>2. Information We Collect</h3>
+                <ul>
+                    <li><strong>Personal Identity:</strong> Name, Billing/Shipping address, and contact details for fulfillment.</li>
+                    <li><strong>Payment Data:</strong> We utilize TakePayments API. We do not store full credit card numbers on our local servers.</li>
+                    <li><strong>Technical Telemetry:</strong> Hardware profiles and IP addresses to optimize performance of the Supreme Neural Hub.</li>
+                </ul>
 
-            <div class="highlight-box">
-                <i class="fas fa-exclamation-triangle"></i> ATTENTION: We do not sell hardware usage data to third-party marketing entities. Your build specifications remain private within the Supreme ecosystem.
-            </div>
-
-            <h3>3. UK GDPR Compliance</h3>
-            <p>Users retain the "Right to be Forgotten." You may request full data deletion through your <a href="dashboard.html" style="color:white;">User Command Center</a>. All requests are processed within 24 hours under the supervision of our Compliance Office.</p>
-
-            <div class="compliance-badge">
-                <i class="fas fa-certificate" style="font-size: 2.5rem; color: #10b981;"></i>
-                <div>
-                    <p style="font-weight: 800; color: white;">ISO 27001 & UK GDPR CERTIFIED</p>
-                    <p style="font-size: 0.7rem; opacity: 0.6;">Official Compliance Status: ACTIVE | Verified by Director Thota Natesh</p>
+                <div class="highlight-box">
+                    <i class="fas fa-user-shield"></i> ZERO-SALE POLICY: We never sell or trade your technical configurations or personal data to third-party advertisers.
                 </div>
+
+                <h3>3. Rights of the User</h3>
+                <p>You have the right to access, rectify, or erase your personal data. Requests are processed via the <a href="dashboard.html" style="color:white; text-decoration: underline;">User Command Center</a> within 24 hours.</p>
             </div>
         </div>
 
-        <div class="legal-card" style="border-left: 4px solid #f59e0b;">
-            <h2>UK Trading & Consumer Rights</h2>
-            <p>Supreme Goods Ltd operates in full accordance with the <strong>Consumer Rights Act 2015</strong>. All high-performance components provided at our HQ are guaranteed to be of satisfactory quality and fit for their intended technical purpose.</p>
-            
-            <h3>Warranty Protocol</h3>
-            <p>All "Supreme Edition" GPUs and custom builds include a standard 24-month technical warranty. Extensions can be managed via the <a href="rewards.html" style="color:white;">Loyalty & Rewards</a> portal for Elite Gold members.</p>
-            
-            <h3>Dispute Resolution</h3>
-            <p>In the event of a technical dispute, our <a href="support.html" style="color:white;">Live Concierge</a> provides an expedited mediation process. If unresolved, matters are escalated to the Director's Office at 105 Russell Street, Luton.</p>
+        <div id="terms" class="policy-section">
+            <div class="legal-card">
+                <h2>Terms of Service</h2>
+                <h3>1. Technical Accuracy</h3>
+                <p>All hardware specifications (GPUs, CPUs, Workstations) are verified at our Luton HQ. While we strive for 100% accuracy, hardware performance may vary based on environmental factors.</p>
+
+                <h3>2. Payment Compliance</h3>
+                <p>By authorizing a transaction, you agree to our verification process. Supreme Goods Ltd reserves the right to hold orders for additional security screening to prevent fraudulent TakePayments transactions.</p>
+                
+                <h3>3. Limitation of Liability</h3>
+                <p>Supreme Goods Ltd is not liable for data loss occurring from hardware overclocking not performed by our certified technical team.</p>
+            </div>
         </div>
 
-        <div class="legal-card">
-            <h2>Modern Slavery & Ethical Sourcing</h2>
-            <p>Under the <strong>Modern Slavery Act 2015</strong>, Supreme Goods Ltd performs annual audits of our vendor network. We ensure that our <a href="partner.html" style="color:white;">Brand Partners</a> adhere to ethical labor standards and sustainable mining practices for rare earth minerals used in our microchips.</p>
-            <p style="margin-top: 20px;">Our commitment to ethical engineering is further detailed on our <a href="green-tech.html" style="color:white;">Sustainability Hub</a>.</p>
+        <div id="refunds" class="policy-section">
+            <div class="legal-card">
+                <h2>Returns & Refund Policy</h2>
+                <p>To ensure 100% satisfaction, Supreme Goods Ltd operates under the UK Consumer Rights Act 2015.</p>
+
+                <h3>1. Returns Window</h3>
+                <p>You have <strong>14 days</strong> from the date of delivery to initiate a return for high-performance components. Items must be in original, unsealed packaging for a full refund.</p>
+
+                <h3>2. Refund Process</h3>
+                <p>Refunds are processed back to the original payment method via TakePayments within 5-7 business days of the item being inspected at our Luton HQ.</p>
+
+                <h3>3. Non-Refundable Items</h3>
+                <p>Custom-built liquid-cooled workstations and personalized software licenses are exempt from standard returns unless a hardware defect is verified by Thota Natesh’s engineering team.</p>
+            </div>
+        </div>
+
+        <div id="cookies" class="policy-section">
+            <div class="legal-card">
+                <h2>Cookie & Tracking Policy</h2>
+                <p>We use essential cookies to maintain your shopping cart state and session security.</p>
+                <ul>
+                    <li><strong>Functional Cookies:</strong> Necessary for the "Supreme Neural Hub" to remember your environment settings.</li>
+                    <li><strong>Analytical Cookies:</strong> Helps us understand hardware demand trends via the Supreme Nebula.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="security" class="policy-section">
+            <div class="legal-card">
+                <h2>Security & Encryption Matrix</h2>
+                <div class="highlight-box" style="border-color: #10b981; color: #10b981; background: rgba(16, 185, 129, 0.1);">
+                    <i class="fas fa-lock"></i> BANK-GRADE SECURITY ACTIVE
+                </div>
+                <p>Our infrastructure is hardened against modern cyber threats to protect TakePayments API integrity.</p>
+                <h3>Technical Safeguards:</h3>
+                <ul>
+                    <li><strong>SSL/TLS Encryption:</strong> All data transmitted between your browser and our Luton server is 256-bit encrypted.</li>
+                    <li><strong>TakePayments Integration:</strong> PCI-DSS compliant payment processing ensures card data never touches our database.</li>
+                    <li><strong>Hardware Audits:</strong> Quarterly security reviews of all database nodes.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="compliance-badge">
+            <i class="fas fa-certificate" style="font-size: 2.5rem; color: #10b981;"></i>
+            <div>
+                <p style="font-weight: 800; color: white;">PCI-DSS & UK GDPR CERTIFIED</p>
+                <p style="font-size: 0.7rem; opacity: 0.6;">Supreme Goods Ltd (Company No. [REDACTED]) | 105 Russell Street, Luton</p>
+            </div>
         </div>
     </div>
 
@@ -132,7 +183,6 @@
             <a href="home.html">Home Dashboard</a>
             <a href="store.html">Mega Store</a>
             <a href="director.html">Director Insights</a>
-            <a href="careers.html">Careers</a>
             <a href="contact.html">Global HQ</a>
             <a href="community.html">Social Wall</a>
         </div>
@@ -140,5 +190,20 @@
         <p style="opacity: 0.3; font-size: 0.7rem; margin-top: 10px;">Executive Director: Thota Natesh | contact@supremegoods.uk | +44 7398 527022</p>
     </footer>
 
+    <script>
+        function showPolicy(id) {
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            // Remove active class from all sections
+            document.querySelectorAll('.policy-section').forEach(sec => sec.classList.remove('active'));
+            
+            // Add active class to clicked button and target section
+            event.target.classList.add('active');
+            document.getElementById(id).classList.add('active');
+            
+            // Smooth scroll to top of section
+            window.scrollTo({ top: 120, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>

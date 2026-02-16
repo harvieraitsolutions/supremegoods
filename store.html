@@ -9,7 +9,6 @@
     
     <style>
         :root {
-            /* Lighter Theme Variables */
             --primary: #0ea5e9;
             --primary-glow: rgba(14, 165, 233, 0.15);
             --bg-light: #f8fafc;
@@ -115,7 +114,10 @@
             cursor: pointer;
             position: relative;
             box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            animation: fadeIn 0.5s ease-out forwards;
         }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .product-card:hover {
             transform: translateY(-8px);
@@ -125,10 +127,10 @@
 
         .product-image {
             width: 100%;
-            height: 220px;
+            height: 200px;
             background: #f1f5f9;
             border-radius: 18px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -142,7 +144,7 @@
             transition: var(--transition);
         }
 
-        .product-card:hover .product-image img { transform: scale(1.1); }
+        .product-card:hover .product-image img { transform: scale(1.08); }
 
         .badge {
             position: absolute;
@@ -159,21 +161,21 @@
         }
 
         .product-info { padding: 5px; }
-        .product-info h3 { font-size: 1rem; margin-bottom: 5px; color: var(--text-main); font-weight: 700; height: 2.2em; overflow: hidden; }
+        .product-info h3 { font-size: 0.95rem; margin-bottom: 5px; color: var(--text-main); font-weight: 700; height: 2.4em; overflow: hidden; }
         .category-label { font-size: 0.65rem; color: var(--primary); text-transform: uppercase; font-weight: 800; letter-spacing: 1px; }
 
         .price-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
-        .price { font-size: 1.3rem; font-weight: 800; color: var(--text-main); }
+        .price { font-size: 1.2rem; font-weight: 800; color: var(--text-main); }
         
         .add-btn {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 12px;
             border: none;
             background: var(--text-main);
@@ -196,10 +198,11 @@
         </div>
         <div class="search-bar">
             <i class="fas fa-search" style="color: var(--text-muted);"></i>
-            <input type="text" id="storeSearch" placeholder="Find hardware..." onkeyup="searchProducts()">
+            <input type="text" id="storeSearch" placeholder="Find hardware, GPUs, CPUs..." onkeyup="searchProducts()">
         </div>
         <div class="user-actions">
             <a href="dashboard.html"><i class="fas fa-user-circle"></i></a>
+            <a href="compare.html"><i class="fas fa-balance-scale"></i></a>
             <a href="cart.html" style="position: relative;">
                 <i class="fas fa-shopping-bag"></i>
                 <span id="cart-count" style="position: absolute; top: -10px; right: -10px; background: var(--primary); color: white; font-size: 0.6rem; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;">2</span>
@@ -225,7 +228,7 @@
                 <h4>Shortcuts</h4>
                 <div class="filter-option" onclick="location.href='flash-sale.html'"><i class="fas fa-bolt"></i> Flash Deals</div>
                 <div class="filter-option" onclick="location.href='green-tech.html'"><i class="fas fa-leaf"></i> Eco-Recycle</div>
-                <div class="filter-option" onclick="location.href='support.html'"><i class="fas fa-headset"></i> Support</div>
+                <div class="filter-option" onclick="location.href='support.html'"><i class="fas fa-headset"></i> Support Hub</div>
             </div>
         </aside>
 
@@ -243,91 +246,104 @@
     </footer>
 
     <script>
-        // Data Array - Using Unsplash categories for visual accuracy
+        // High-Quality Dynamic Image IDs (Unsplash)
+        const pImg = {
+            gpu: "1591488320449-011701bb6704",
+            cpu: "1591405351990-4726e331f141",
+            laptop: "1517336714731-489689fd1ca8",
+            ram: "1562408590-e32931084e23",
+            ssd: "1597872200370-499df51bb44a",
+            cooling: "1587202372634-32705e3bf49c",
+            periph: "1527864550417-7fd91fc51a46",
+            smart: "1550745165-9bc0b252726f"
+        };
+
         const products = [
             // GPUs (10)
-            { id: 1, cat: "GPU", name: "Supreme RTX 5090 Ti", price: "£1,999", tag: "Hot", img: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=500" },
-            { id: 2, cat: "GPU", name: "NVIDIA RTX 5080 Super", price: "£1,199", tag: "Popular", img: "https://images.unsplash.com/photo-1555617766-c94804975da3?auto=format&fit=crop&q=80&w=500" },
-            { id: 3, cat: "GPU", name: "AMD Radeon RX 8900 XTX", price: "£999", tag: "New", img: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&q=80&w=500" },
-            { id: 4, cat: "GPU", name: "Supreme RTX 5070 OC", price: "£649", tag: "Stock", img: "https://images.unsplash.com/photo-1616092285821-c671c77f73c6?auto=format&fit=crop&q=80&w=500" },
-            { id: 5, cat: "GPU", name: "Radeon RX 8800 XT", price: "£549", tag: "Stock", img: "https://images.unsplash.com/photo-1591447794428-99522b39e803?auto=format&fit=crop&q=80&w=500" },
-            { id: 6, cat: "GPU", name: "Supreme Workstation G1", price: "£2,499", tag: "B2B", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=500" },
-            { id: 7, cat: "GPU", name: "NVIDIA RTX 5060 Vision", price: "£399", tag: "Value", img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=500" },
-            { id: 8, cat: "GPU", name: "Intel Arc Battlemage A900", price: "£449", tag: "New", img: "https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&q=80&w=500" },
-            { id: 9, cat: "GPU", name: "Liquid Cooled RTX 5090", price: "£2,299", tag: "Elite", img: "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&q=80&w=500" },
-            { id: 10, cat: "GPU", name: "AMD Radeon Pro W7900", price: "£3,800", tag: "Studio", img: "https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?auto=format&fit=crop&q=80&w=500" },
+            { id: 1, cat: "GPU", name: "Supreme RTX 5090 Ti", price: "£1,999", tag: "Hot", img: pImg.gpu },
+            { id: 2, cat: "GPU", name: "NVIDIA RTX 5080 Super", price: "£1,199", tag: "Popular", img: pImg.gpu },
+            { id: 3, cat: "GPU", name: "AMD Radeon RX 8900 XTX", price: "£999", tag: "New", img: pImg.gpu },
+            { id: 4, cat: "GPU", name: "Supreme RTX 5070 OC", price: "£649", tag: "Stock", img: pImg.gpu },
+            { id: 5, cat: "GPU", name: "Radeon RX 8800 XT", price: "£549", tag: "Stock", img: pImg.gpu },
+            { id: 6, cat: "GPU", name: "Supreme Workstation G1", price: "£2,499", tag: "B2B", img: pImg.gpu },
+            { id: 7, cat: "GPU", name: "NVIDIA RTX 5060 Vision", price: "£399", tag: "Value", img: pImg.gpu },
+            { id: 8, cat: "GPU", name: "Intel Arc Battlemage A900", price: "£449", tag: "New", img: pImg.gpu },
+            { id: 9, cat: "GPU", name: "Liquid Cooled RTX 5090", price: "£2,299", tag: "Elite", img: pImg.gpu },
+            { id: 10, cat: "GPU", name: "AMD Radeon Pro W7900", price: "£3,800", tag: "Studio", img: pImg.gpu },
 
             // CPUs (10)
-            { id: 11, cat: "CPU", name: "Intel Core i9-16900K", price: "£620", tag: "Hot", img: "https://images.unsplash.com/photo-1591405351990-4726e331f141?auto=format&fit=crop&q=80&w=500" },
-            { id: 12, cat: "CPU", name: "AMD Ryzen 9 9950X", price: "£650", tag: "Peak", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=500" },
-            { id: 13, cat: "CPU", name: "Intel Core i7-16700K", price: "£410", tag: "Stock", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=500" },
-            { id: 14, cat: "CPU", name: "AMD Ryzen 7 9800X3D", price: "£480", tag: "Gamer", img: "https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&q=80&w=500" },
-            { id: 15, cat: "CPU", name: "Threadripper 7995WX", price: "£8,500", tag: "Monster", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=500" },
-            { id: 16, cat: "CPU", name: "Intel Core i5-16600K", price: "£299", tag: "Value", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=500" },
-            { id: 17, cat: "CPU", name: "AMD Ryzen 5 9600X", price: "£250", tag: "Stock", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=500" },
-            { id: 18, cat: "CPU", name: "Xeon W-3400 Series", price: "£3,200", tag: "B2B", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=500" },
-            { id: 19, cat: "CPU", name: "Supreme Quantum Core Q1", price: "£1,200", tag: "Exp", img: "https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&q=80&w=500" },
-            { id: 20, cat: "CPU", name: "Ryzen 9 9900X Extreme", price: "£550", tag: "Sale", img: "https://images.unsplash.com/photo-1591405351990-4726e331f141?auto=format&fit=crop&q=80&w=500" },
+            { id: 11, cat: "CPU", name: "Intel Core i9-16900K", price: "£620", tag: "Hot", img: pImg.cpu },
+            { id: 12, cat: "CPU", name: "AMD Ryzen 9 9950X", price: "£650", tag: "Peak", img: pImg.cpu },
+            { id: 13, cat: "CPU", name: "Intel Core i7-16700K", price: "£410", tag: "Stock", img: pImg.cpu },
+            { id: 14, cat: "CPU", name: "AMD Ryzen 7 9800X3D", price: "£480", tag: "Gamer", img: pImg.cpu },
+            { id: 15, cat: "CPU", name: "Threadripper Pro 7995WX", price: "£8,500", tag: "Monster", img: pImg.cpu },
+            { id: 16, cat: "CPU", name: "Intel Core i5-16600K", price: "£299", tag: "Value", img: pImg.cpu },
+            { id: 17, cat: "CPU", name: "AMD Ryzen 5 9600X", price: "£250", tag: "Stock", img: pImg.cpu },
+            { id: 18, cat: "CPU", name: "Xeon W-3400 Series", price: "£3,200", tag: "B2B", img: pImg.cpu },
+            { id: 19, cat: "CPU", name: "Supreme Quantum Core Q1", price: "£1,200", tag: "Exp", img: pImg.cpu },
+            { id: 20, cat: "CPU", name: "Ryzen 9 9900X Extreme", price: "£550", tag: "Sale", img: pImg.cpu },
 
             // Laptops (10)
-            { id: 21, cat: "LAPTOP", name: "SupremeBook Pro 16'", price: "£2,499", tag: "Flagship", img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=500" },
-            { id: 22, cat: "LAPTOP", name: "ASUS ROG Zephyrus G16", price: "£1,899", tag: "Gaming", img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&q=80&w=500" },
-            { id: 23, cat: "LAPTOP", name: "Razer Blade 18 v2026", price: "£3,200", tag: "Elite", img: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&q=80&w=500" },
-            { id: 24, cat: "LAPTOP", name: "SupremeBook Air M4", price: "£1,199", tag: "Thin", img: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&q=80&w=500" },
-            { id: 25, cat: "LAPTOP", name: "Alienware m18 R2", price: "£2,100", tag: "Heavy", img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&q=80&w=500" },
-            { id: 26, cat: "LAPTOP", name: "Dell XPS 17 Platinum", price: "£2,300", tag: "Studio", img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&q=80&w=500" },
-            { id: 27, cat: "LAPTOP", name: "Supreme Stealth 14", price: "£1,450", tag: "New", img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=500" },
-            { id: 28, cat: "LAPTOP", name: "Lenovo Legion 9i", price: "£3,500", tag: "Pro", img: "https://images.unsplash.com/photo-1602080858428-57174f9431cf?auto=format&fit=crop&q=80&w=500" },
-            { id: 29, cat: "LAPTOP", name: "HP Spectre x360", price: "£1,300", tag: "2-in-1", img: "https://images.unsplash.com/photo-1544006659-f0b21f04cb1d?auto=format&fit=crop&q=80&w=500" },
-            { id: 30, cat: "LAPTOP", name: "Supreme Workstation Mob", price: "£4,000", tag: "B2B", img: "https://images.unsplash.com/photo-1593642702821-c857c897f7b6?auto=format&fit=crop&q=80&w=500" },
+            { id: 21, cat: "LAPTOP", name: "SupremeBook Pro 16'", price: "£2,499", tag: "Flagship", img: pImg.laptop },
+            { id: 22, cat: "LAPTOP", name: "ASUS ROG Zephyrus G16", price: "£1,899", tag: "Gaming", img: pImg.laptop },
+            { id: 23, cat: "LAPTOP", name: "Razer Blade 18 v2026", price: "£3,200", tag: "Elite", img: pImg.laptop },
+            { id: 24, cat: "LAPTOP", name: "SupremeBook Air M4", price: "£1,199", tag: "Thin", img: pImg.laptop },
+            { id: 25, cat: "LAPTOP", name: "Alienware m18 R2", price: "£2,100", tag: "Heavy", img: pImg.laptop },
+            { id: 26, cat: "LAPTOP", name: "Dell XPS 17 Platinum", price: "£2,300", tag: "Studio", img: pImg.laptop },
+            { id: 27, cat: "LAPTOP", name: "Supreme Stealth 14", price: "£1,450", tag: "New", img: pImg.laptop },
+            { id: 28, cat: "LAPTOP", name: "Lenovo Legion 9i", price: "£3,500", tag: "Pro", img: pImg.laptop },
+            { id: 29, cat: "LAPTOP", name: "HP Spectre x360", price: "£1,300", tag: "2-in-1", img: pImg.laptop },
+            { id: 30, cat: "LAPTOP", name: "Supreme Workstation Mob", price: "£4,000", tag: "B2B", img: pImg.laptop },
+
+            // RAM (10)
+            { id: 31, cat: "RAM", name: "Supreme Dominator 64GB DDR5", price: "£280", tag: "Fast", img: pImg.ram },
+            { id: 32, cat: "RAM", name: "G.Skill Trident Z5 32GB", price: "£160", tag: "RGB", img: pImg.ram },
+            { id: 33, cat: "RAM", name: "Crucial Pro 128GB Bundle", price: "£520", tag: "Elite", img: pImg.ram },
+            { id: 34, cat: "RAM", name: "Supreme Vengeance 32GB", price: "£140", tag: "Value", img: pImg.ram },
+            { id: 35, cat: "RAM", name: "Kingston Fury 64GB Kit", price: "£260", tag: "Stock", img: pImg.ram },
+            { id: 36, cat: "RAM", name: "ECC Server RAM 256GB", price: "£1,100", tag: "Server", img: pImg.ram },
+            { id: 37, cat: "RAM", name: "TeamGroup T-Force 32GB", price: "£150", tag: "New", img: pImg.ram },
+            { id: 38, cat: "RAM", name: "Corsair LXP 16GB DDR5", price: "£85", tag: "Budget", img: pImg.ram },
+            { id: 39, cat: "RAM", name: "Supreme Overclocked 32GB", price: "£210", tag: "Elite", img: pImg.ram },
+            { id: 40, cat: "RAM", name: "PNY XLR8 64GB Kit", price: "£270", tag: "Stock", img: pImg.ram },
+
+            // Storage (10)
+            { id: 41, cat: "STORAGE", name: "Supreme Gen5 NVMe 4TB", price: "£450", tag: "Ultra", img: pImg.ssd },
+            { id: 42, cat: "STORAGE", name: "Samsung 990 Pro 2TB", price: "£180", tag: "Reliable", img: pImg.ssd },
+            { id: 43, cat: "STORAGE", name: "WD Black SN850X 1TB", price: "£99", tag: "Gaming", img: pImg.ssd },
+            { id: 44, cat: "STORAGE", name: "Supreme SSD SATA 8TB", price: "£600", tag: "Bulk", img: pImg.ssd },
+            { id: 45, cat: "STORAGE", name: "Crucial T700 2TB Gen5", price: "£240", tag: "New", img: pImg.ssd },
+            { id: 46, cat: "STORAGE", name: "NAS Drive 20TB Red", price: "£420", tag: "Enterprise", img: pImg.ssd },
+            { id: 47, cat: "STORAGE", name: "Seagate FireCuda 4TB", price: "£310", tag: "Stock", img: pImg.ssd },
+            { id: 48, cat: "STORAGE", name: "Sabrent Rocket 8TB NVMe", price: "£999", tag: "Luxury", img: pImg.ssd },
+            { id: 49, cat: "STORAGE", name: "Supreme Portable SSD 2TB", price: "£150", tag: "Mobile", img: pImg.ssd },
+            { id: 50, cat: "STORAGE", name: "Kingston NV2 2TB", price: "£110", tag: "Value", img: pImg.ssd },
+
+            // Cooling (5)
+            { id: 51, cat: "COOLING", name: "Zenith AIO 360 Cooler", price: "£210", tag: "Elite", img: pImg.cooling },
+            { id: 52, cat: "COOLING", name: "NZXT Kraken Elite LCD", price: "£260", tag: "Visual", img: pImg.cooling },
+            { id: 53, cat: "COOLING", name: "Supreme Air Frost v2", price: "£85", tag: "Classic", img: pImg.cooling },
+            { id: 54, cat: "COOLING", name: "Noctua NH-D15 G2", price: "£110", tag: "Silent", img: pImg.cooling },
+            { id: 55, cat: "COOLING", name: "Vapor Chamber Kit", price: "£499", tag: "Custom", img: pImg.cooling },
 
             // Peripherals (10)
-            { id: 31, cat: "PERIPHERAL", name: "Ghost M1 Wireless Mouse", price: "£129", tag: "Fast", img: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&q=80&w=500" },
-            { id: 32, cat: "PERIPHERAL", name: "Apex Mechanical K1", price: "£199", tag: "RGB", img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=500" },
-            { id: 33, cat: "PERIPHERAL", name: "Supreme Vision 4K 144Hz", price: "£799", tag: "OLED", img: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&q=80&w=500" },
-            { id: 34, cat: "PERIPHERAL", name: "Sonic Sphere Headset", price: "£249", tag: "7.1", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=500" },
-            { id: 35, cat: "PERIPHERAL", name: "Logitech G Pro X", price: "£140", tag: "Pro", img: "https://images.unsplash.com/photo-1563991655280-cb95c90ca2fb?auto=format&fit=crop&q=80&w=500" },
-            { id: 36, cat: "PERIPHERAL", name: "Supreme 4K Web-Node", price: "£199", tag: "New", img: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&q=80&w=500" },
-            { id: 37, cat: "PERIPHERAL", name: "Stream Deck XL Supreme", price: "£220", tag: "Live", img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=500" },
-            { id: 38, cat: "PERIPHERAL", name: "Blue Yeti Supreme Mic", price: "£150", tag: "HQ", img: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=500" },
-            { id: 39, cat: "PERIPHERAL", name: "Supreme Desk Mat XL", price: "£45", tag: "Eco", img: "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?auto=format&fit=crop&q=80&w=500" },
-            { id: 40, cat: "PERIPHERAL", name: "Custom Keycap Set", price: "£85", tag: "Mod", img: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&q=80&w=500" },
+            { id: 56, cat: "PERIPHERAL", name: "Ghost M1 Mouse", price: "£129", tag: "Pro", img: pImg.periph },
+            { id: 57, cat: "PERIPHERAL", name: "Apex Mechanical K1", price: "£199", tag: "RGB", img: pImg.periph },
+            { id: 58, cat: "PERIPHERAL", name: "Supreme Vision 4K OLED", price: "£799", tag: "144Hz", img: pImg.periph },
+            { id: 59, cat: "PERIPHERAL", name: "Sonic Sphere Headset", price: "£249", tag: "Spatial", img: pImg.periph },
+            { id: 60, cat: "PERIPHERAL", name: "Supreme Desk Mat XL", price: "£45", tag: "Eco", img: pImg.periph },
+            { id: 61, cat: "PERIPHERAL", name: "Logitech Superlight 2", price: "£140", tag: "Light", img: pImg.periph },
+            { id: 62, cat: "PERIPHERAL", name: "SteelSeries Apex Pro", price: "£180", tag: "Mag", img: pImg.periph },
+            { id: 63, cat: "PERIPHERAL", name: "Supreme 4K Web-Node", price: "£199", tag: "Stream", img: pImg.periph },
+            { id: 64, cat: "PERIPHERAL", name: "Blue Yeti Supreme Mic", price: "£150", tag: "Studio", img: pImg.periph },
+            { id: 65, cat: "PERIPHERAL", name: "Elgato Stream Deck XL", price: "£220", tag: "Tools", img: pImg.periph },
 
-            // Storage & RAM (15)
-            { id: 41, cat: "RAM", name: "64GB DDR5 Dominator", price: "£280", tag: "Fast", img: "https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&q=80&w=500" },
-            { id: 42, cat: "STORAGE", name: "4TB Gen5 NVMe SSD", price: "£450", tag: "Ultra", img: "https://images.unsplash.com/photo-1597872200370-499df51bb44a?auto=format&fit=crop&q=80&w=500" },
-            { id: 43, cat: "RAM", name: "32GB Vengeance RGB", price: "£160", tag: "Popular", img: "https://images.unsplash.com/photo-1541029071515-84cc54f84dc5?auto=format&fit=crop&q=80&w=500" },
-            { id: 44, cat: "STORAGE", name: "Samsung 990 Pro 2TB", price: "£180", tag: "Reliable", img: "https://images.unsplash.com/photo-1597872200370-499df51bb44a?auto=format&fit=crop&q=80&w=500" },
-            { id: 45, cat: "RAM", name: "128GB Workstation Kit", price: "£520", tag: "Pro", img: "https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&q=80&w=500" },
-            { id: 46, cat: "STORAGE", name: "NAS Drive 20TB Red", price: "£420", tag: "Server", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=500" },
-            { id: 47, cat: "RAM", name: "32GB T-Force Elite", price: "£140", tag: "Value", img: "https://images.unsplash.com/photo-1541029071515-84cc54f84dc5?auto=format&fit=crop&q=80&w=500" },
-            { id: 48, cat: "STORAGE", name: "Portable SSD 4TB", price: "£300", tag: "Travel", img: "https://images.unsplash.com/photo-1597872200370-499df51bb44a?auto=format&fit=crop&q=80&w=500" },
-            { id: 49, cat: "RAM", name: "Supreme Overclocked 32GB", price: "£210", tag: "Elite", img: "https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&q=80&w=500" },
-            { id: 50, cat: "STORAGE", name: "Crucial T700 2TB", price: "£240", tag: "New", img: "https://images.unsplash.com/photo-1597872200370-499df51bb44a?auto=format&fit=crop&q=80&w=500" },
-
-            // Cooling & Home (20)
-            { id: 51, cat: "COOLING", name: "Zenith AIO 360 Cooler", price: "£210", tag: "Elite", img: "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&q=80&w=500" },
-            { id: 52, cat: "SMART", name: "Supreme Neural Hub v4", price: "£599", tag: "AI", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=500" },
-            { id: 53, cat: "COOLING", name: "Kraken Elite LCD", price: "£260", tag: "Showpiece", img: "https://images.unsplash.com/photo-1587202372162-6383f04dfc00?auto=format&fit=crop&q=80&w=500" },
-            { id: 54, cat: "SMART", name: "AI Security Node", price: "£299", tag: "Guardian", img: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=500" },
-            { id: 55, cat: "COOLING", name: "Noctua NH-D15 G2", price: "£110", tag: "Silent", img: "https://images.unsplash.com/photo-1587202372162-6383f04dfc00?auto=format&fit=crop&q=80&w=500" },
-            { id: 56, cat: "SMART", name: "Smart Ambient Light", price: "£120", tag: "RGB", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=500" },
-            { id: 57, cat: "COOLING", name: "Supreme Frost Fans 3pk", price: "£65", tag: "Stock", img: "https://images.unsplash.com/photo-1587202372162-6383f04dfc00?auto=format&fit=crop&q=80&w=500" },
-            { id: 58, cat: "SMART", name: "Neural Thermostat", price: "£199", tag: "Eco", img: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=500" },
-            { id: 59, cat: "COOLING", name: "Vapor Chamber Block", price: "£85", tag: "Custom", img: "https://images.unsplash.com/photo-1587202372162-6383f04dfc00?auto=format&fit=crop&q=80&w=500" },
-            { id: 60, cat: "SMART", name: "Supreme AI Home Server", price: "£1,450", tag: "Cloud", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=500" },
-            
-            // Final Push to 70
-            { id: 61, cat: "GPU", name: "Zotac RTX 5080 Trinity", price: "£1,150", tag: "Stock", img: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=500" },
-            { id: 62, cat: "CPU", name: "Core i3-16100", price: "£120", tag: "Entry", img: "https://images.unsplash.com/photo-1591405351990-4726e331f141?auto=format&fit=crop&q=80&w=500" },
-            { id: 63, cat: "LAPTOP", name: "ThinkPad Supreme X1", price: "£1,900", tag: "Work", img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&q=80&w=500" },
-            { id: 64, cat: "PERIPHERAL", name: "4K Capture Card Node", price: "£180", tag: "Stream", img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=500" },
-            { id: 65, cat: "STORAGE", name: "1TB MicroSD Extreme", price: "£140", tag: "Mobile", img: "https://images.unsplash.com/photo-1597872200370-499df51bb44a?auto=format&fit=crop&q=80&w=500" },
-            { id: 66, cat: "COOLING", name: "Cryo-Paste Supreme", price: "£15", tag: "Essential", img: "https://images.unsplash.com/photo-1587202372162-6383f04dfc00?auto=format&fit=crop&q=80&w=500" },
-            { id: 67, cat: "PERIPHERAL", name: "Vertical Mouse Pro", price: "£99", tag: "Ergo", img: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&q=80&w=500" },
-            { id: 68, cat: "GPU", name: "NVIDIA RTX 5050 Laptop", price: "£250", tag: "Component", img: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=500" },
-            { id: 69, cat: "RAM", name: "Crucial 16GB DDR4", price: "£45", tag: "Legacy", img: "https://images.unsplash.com/photo-1541029071515-84cc54f84dc5?auto=format&fit=crop&q=80&w=500" },
-            { id: 70, cat: "SMART", name: "AI Garden Node", price: "£350", tag: "Outdoor", img: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=500" }
+            // Smart Home (5)
+            { id: 66, cat: "SMART", name: "Supreme Neural Hub v4", price: "£599", tag: "AI Hub", img: pImg.smart },
+            { id: 67, cat: "SMART", name: "AI Security Node", price: "£299", tag: "Pro", img: pImg.smart },
+            { id: 68, cat: "SMART", name: "Smart Ambient Light", price: "£120", tag: "RGB", img: pImg.smart },
+            { id: 69, cat: "SMART", name: "Neural Thermostat", price: "£199", tag: "Eco", img: pImg.smart },
+            { id: 70, cat: "SMART", name: "AI Garden Node", price: "£350", tag: "Outdoor", img: pImg.smart }
         ];
 
         const grid = document.getElementById('main-grid');
@@ -341,7 +357,7 @@
                 card.innerHTML = `
                     <span class="badge">${p.tag}</span>
                     <div class="product-image">
-                        <img src="${p.img}" alt="${p.name}">
+                        <img src="https://images.unsplash.com/photo-${p.img}?auto=format&fit=crop&q=80&w=500" alt="${p.name}">
                     </div>
                     <div class="product-info">
                         <span class="category-label">${p.cat}</span>
@@ -372,7 +388,7 @@
             displayProducts(filtered);
         }
 
-        // Init
+        // Initialize display
         displayProducts(products);
     </script>
 

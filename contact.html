@@ -35,9 +35,23 @@
 
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; padding-top: 80px; }
         
-        /* Map Integration */
-        .map-side { background: #e5e7eb; position: relative; overflow: hidden; border-right: 1px solid var(--border); }
-        .map-side iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.3) contrast(1.1); }
+        /* Map Integration - Fixed */
+        .map-side { 
+            background: #e2e8f0 url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=1000') center/cover; 
+            position: relative; 
+            overflow: hidden; 
+            border-right: 1px solid var(--border); 
+        }
+        
+        /* The Actual Live Google Map */
+        .map-side iframe { 
+            width: 100%; 
+            height: 100%; 
+            border: 0; 
+            filter: grayscale(0.2) contrast(1.1); 
+            position: relative;
+            z-index: 2;
+        }
 
         /* Form Styling */
         .form-side { padding: 80px 10%; display: flex; flex-direction: column; justify-content: center; background: white; }
@@ -93,7 +107,7 @@
     <div class="contact-grid">
         <div class="map-side">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m13!1m1!1s0x487648375a065849:0x879796e95c1c04f9!2zMTA1IFJ1c3NlbGwgU3QsIEx1dG9uIExVMSA1RUIsIFVL!2m2!1d-0.4162744!2d51.875691!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487648375a065849%3A0x879796e95c1c04f9!2s105%20Russell%20St%2C%20Luton%20LU1%205EB!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2459.431238423659!2d-0.4147775!3d51.8795552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487648359218e275%3A0x6b87df34a5d85d77!2s105%20Russell%20St%2C%20Luton%20LU1%205EB%2C%20UK!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
                 allowfullscreen="" 
                 loading="lazy" 
                 referrerpolicy="no-referrer-when-downgrade">
@@ -135,7 +149,7 @@
     </div>
 
     <footer>
-        <div>&copy; 2026 SUPREME GOODS LTD | Luton, United Kingdom</div>
+        <div>© 2026 SUPREME GOODS LTD | Luton, United Kingdom</div>
         <div>
             <a href="legal.html">Privacy Policy</a>
             <a href="legal.html">Compliance</a>

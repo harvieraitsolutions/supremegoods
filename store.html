@@ -454,7 +454,6 @@
             filteredList.forEach(p => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
-                card.onclick = () => { location.href = 'product-detail.html'; };
                 card.innerHTML = `
                     <span class="badge">${p.tag}</span>
                     <div class="product-image">
@@ -526,6 +525,7 @@
     </script>
 </body>
 </html>
+
 
 
 

@@ -255,22 +255,197 @@
             smart: "1550745165-9bc0b252726f"
         };
 
-        const products = [
-            { id: 1, cat: "GPU", name: "Supreme RTX 5090 Ti", price: "£1,999", tag: "Hot", img: pImg.gpu },
-            { id: 2, cat: "GPU", name: "NVIDIA RTX 5080 Super", price: "£1,199", tag: "Popular", img: pImg.gpu },
-            { id: 3, cat: "GPU", name: "AMD Radeon RX 8900 XTX", price: "£999", tag: "New", img: pImg.gpu },
-            { id: 4, cat: "GPU", name: "Supreme RTX 5070 OC", price: "£649", tag: "Stock", img: pImg.gpu },
-            { id: 5, cat: "GPU", name: "Radeon RX 8800 XT", price: "£549", tag: "Stock", img: pImg.gpu },
-            { id: 11, cat: "CPU", name: "Intel Core i9-16900K", price: "£620", tag: "Hot", img: pImg.cpu },
-            { id: 12, cat: "CPU", name: "AMD Ryzen 9 9950X", price: "£650", tag: "Peak", img: pImg.cpu },
-            { id: 21, cat: "LAPTOP", name: "SupremeBook Pro 16'", price: "£2,499", tag: "Flagship", img: pImg.laptop },
-            { id: 31, cat: "RAM", name: "Supreme Dominator 64GB DDR5", price: "£280", tag: "Fast", img: pImg.ram },
-            { id: 41, cat: "STORAGE", name: "Supreme Gen5 NVMe 4TB", price: "£450", tag: "Ultra", img: pImg.ssd },
-            { id: 51, cat: "COOLING", name: "Zenith AIO 360 Cooler", price: "£210", tag: "Elite", img: pImg.cooling },
-            { id: 57, cat: "PERIPHERAL", name: "Apex Mechanical K1", price: "£199", tag: "RGB", img: pImg.periph },
-            { id: 66, cat: "SMART", name: "Supreme Neural Hub v4", price: "£599", tag: "AI Hub", img: pImg.smart }
-            // Note: Keep your full list from your original file; I've shortened it for the example.
-        ];
+        
+    const products = [
+
+        /* ========================= GRAPHICS CARDS (20) ========================= */
+        { id: 1, cat: "GPU", name: "NVIDIA RTX 5090 Ti", price: "£1,999", tag: "Hot", img: "pic/1.png" },
+        { id: 2, cat: "GPU", name: "NVIDIA RTX 5080 Super", price: "£1,299", tag: "Popular", img: "pic/2.png" },
+        { id: 3, cat: "GPU", name: "AMD RX 8900 XTX", price: "£999", tag: "New", img: "pic/3.png" },
+        { id: 4, cat: "GPU", name: "RTX 5070 OC", price: "£649", tag: "Stock", img: "pic/4.png" },
+        { id: 5, cat: "GPU", name: "RX 8800 XT", price: "£549", tag: "Stock", img: "pic/5.png" },
+        { id: 6, cat: "GPU", name: "RTX 4060 Ti", price: "£399", tag: "Budget", img: "pic/6.png" },
+        { id: 7, cat: "GPU", name: "RX 7600 XT", price: "£349", tag: "Mid", img: "pic/7.png" },
+        { id: 8, cat: "GPU", name: "RTX 4090 OC", price: "£1,799", tag: "Extreme", img: "pic/8.png" },
+        { id: 9, cat: "GPU", name: "RTX 4080 Super", price: "£1,099", tag: "Elite", img: "pic/9.png" },
+        { id: 10, cat: "GPU", name: "RX 7800 XT", price: "£499", tag: "Popular", img: "pic/10.png" },
+        { id: 11, cat: "GPU", name: "RTX 4070 Ti", price: "£699", tag: "Top", img: "pic/11.png" },
+        { id: 12, cat: "GPU", name: "RX 7700 XT", price: "£429", tag: "Value", img: "pic/12.png" },
+        { id: 13, cat: "GPU", name: "RTX 3060", price: "£299", tag: "Budget", img: "pic/13.png" },
+        { id: 14, cat: "GPU", name: "RX 6700 XT", price: "£379", tag: "Mid", img: "pic/14.png" },
+        { id: 15, cat: "GPU", name: "RTX 3050", price: "£249", tag: "Entry", img: "pic/15.png" },
+        { id: 16, cat: "GPU", name: "RX 6600", price: "£229", tag: "Entry", img: "pic/16.png" },
+        { id: 17, cat: "GPU", name: "RTX 3080 Ti", price: "£899", tag: "Pro", img: "pic/17.png" },
+        { id: 18, cat: "GPU", name: "RX 6800 XT", price: "£699", tag: "Pro", img: "pic/18.png" },
+        { id: 19, cat: "GPU", name: "RTX 3070", price: "£499", tag: "Classic", img: "pic/19.png" },
+        { id: 20, cat: "GPU", name: "RX 6750 XT", price: "£459", tag: "Popular", img: "pic/20.png" },
+        
+        /* ========================= PROCESSORS (20) ========================= */
+        { id: 21, cat: "CPU", name: "Intel Core i9-16900K", price: "£620", tag: "Hot", img: "pic/21.png" },
+        { id: 22, cat: "CPU", name: "AMD Ryzen 9 9950X", price: "£650", tag: "Peak", img: "pic/22.png" },
+        { id: 23, cat: "CPU", name: "Intel i7-16700K", price: "£420", tag: "Popular", img: "pic/23.png" },
+        { id: 24, cat: "CPU", name: "Ryzen 7 9800X", price: "£399", tag: "Gaming", img: "pic/24.png" },
+        { id: 25, cat: "CPU", name: "Intel i5-16600K", price: "£299", tag: "Value", img: "pic/25.png" },
+        { id: 26, cat: "CPU", name: "Ryzen 5 9600X", price: "£279", tag: "Mid", img: "pic/26.png" },
+        { id: 27, cat: "CPU", name: "Intel i3-16100", price: "£149", tag: "Entry", img: "pic/27.png" },
+        { id: 28, cat: "CPU", name: "Ryzen 3 9500", price: "£139", tag: "Entry", img: "pic/28.png" },
+        { id: 29, cat: "CPU", name: "Intel Xeon W9", price: "£1,200", tag: "Workstation", img: "pic/29.png" },
+        { id: 30, cat: "CPU", name: "Threadripper 7990X", price: "£2,199", tag: "Extreme", img: "pic/30.png" },
+        { id: 31, cat: "CPU", name: "Intel i9-15900K", price: "£599", tag: "Hot", img: "pic/31.png" },
+        { id: 32, cat: "CPU", name: "Ryzen 9 7900X3D", price: "£580", tag: "Gaming", img: "pic/32.png" },
+        { id: 33, cat: "CPU", name: "Intel i7-14700K", price: "£399", tag: "Popular", img: "pic/33.png" },
+        { id: 34, cat: "CPU", name: "Ryzen 7 7800X3D", price: "£420", tag: "Top", img: "pic/34.png" },
+        { id: 35, cat: "CPU", name: "Intel i5-14600K", price: "£310", tag: "Mid", img: "pic/35.png" },
+        { id: 36, cat: "CPU", name: "Ryzen 5 7600X", price: "£250", tag: "Value", img: "pic/36.png" },
+        { id: 37, cat: "CPU", name: "Intel Pentium Gold", price: "£89", tag: "Budget", img: "pic/37.png" },
+        { id: 38, cat: "CPU", name: "Athlon 3000G", price: "£75", tag: "Budget", img: "pic/38.png" },
+        { id: 39, cat: "CPU", name: "Xeon Silver 4310", price: "£699", tag: "Server", img: "pic/39.png" },
+        { id: 40, cat: "CPU", name: "EPYC 9654", price: "£3,499", tag: "Server", img: "pic/40.png" },
+        
+        /* ========================= LAPTOPS (20) ========================= */
+        { id: 41, cat: "LAPTOP", name: "ASUS ROG Strix 18", price: "£2,499", tag: "Gaming", img: "pic/41.png" },
+        { id: 42, cat: "LAPTOP", name: "MSI Titan GT77", price: "£3,199", tag: "Extreme", img: "pic/42.png" },
+        { id: 43, cat: "LAPTOP", name: "Dell XPS 15", price: "£1,899", tag: "Premium", img: "pic/43.png" },
+        { id: 44, cat: "LAPTOP", name: "HP Omen 17", price: "£1,699", tag: "Gaming", img: "pic/44.png" },
+        { id: 45, cat: "LAPTOP", name: "Lenovo Legion Pro 7", price: "£2,099", tag: "Hot", img: "pic/45.png" },
+        { id: 46, cat: "LAPTOP", name: "Acer Predator Helios", price: "£1,799", tag: "Popular", img: "pic/46.png" },
+        { id: 47, cat: "LAPTOP", name: "Razer Blade 16", price: "£2,699", tag: "Elite", img: "pic/47.png" },
+        { id: 48, cat: "LAPTOP", name: "Alienware m18", price: "£2,899", tag: "Extreme", img: "pic/48.png" },
+        { id: 49, cat: "LAPTOP", name: "MacBook Pro 16", price: "£2,399", tag: "Creator", img: "pic/49.png" },
+        { id: 50, cat: "LAPTOP", name: "Surface Laptop Studio", price: "£1,999", tag: "Design", img: "pic/50.png" },
+        { id: 51, cat: "LAPTOP", name: "Gigabyte Aorus 17X", price: "£2,299", tag: "Gaming", img: "pic/51.png" },
+        { id: 52, cat: "LAPTOP", name: "ASUS ZenBook Pro", price: "£1,799", tag: "Pro", img: "pic/52.png" },
+        { id: 53, cat: "LAPTOP", name: "HP Spectre x360", price: "£1,599", tag: "2-in-1", img: "pic/53.png" },
+        { id: 54, cat: "LAPTOP", name: "Dell G16 Gaming", price: "£1,499", tag: "Gaming", img: "pic/54.png" },
+        { id: 55, cat: "LAPTOP", name: "Lenovo ThinkPad X1", price: "£1,899", tag: "Business", img: "pic/55.png" },
+        { id: 56, cat: "LAPTOP", name: "Acer Swift X", price: "£1,199", tag: "Lightweight", img: "pic/56.png" },
+        { id: 57, cat: "LAPTOP", name: "MSI Stealth 15", price: "£1,699", tag: "Slim", img: "pic/57.png" },
+        { id: 58, cat: "LAPTOP", name: "Razer Blade 14", price: "£2,099", tag: "Gaming", img: "pic/58.png" },
+        { id: 59, cat: "LAPTOP", name: "ASUS TUF F15", price: "£1,299", tag: "Value", img: "pic/59.png" },
+        { id: 60, cat: "LAPTOP", name: "HP Victus 16", price: "£1,099", tag: "Budget", img: "pic/60.png" },
+        
+        /* ========================= RAM (61–70) ========================= */
+        { id: 61, cat: "RAM", name: "Corsair Dominator 64GB DDR5", price: "£280", tag: "Fast", img: "pic/61.png" },
+        { id: 62, cat: "RAM", name: "G.Skill Trident Z5 32GB", price: "£180", tag: "RGB", img: "pic/62.png" },
+        { id: 63, cat: "RAM", name: "Kingston Fury 32GB", price: "£160", tag: "Popular", img: "pic/63.png" },
+        { id: 64, cat: "RAM", name: "Crucial 16GB DDR5", price: "£89", tag: "Budget", img: "pic/64.png" },
+        { id: 65, cat: "RAM", name: "TeamGroup 64GB DDR5", price: "£260", tag: "Pro", img: "pic/65.png" },
+        { id: 66, cat: "RAM", name: "ADATA XPG 32GB", price: "£170", tag: "Gaming", img: "pic/66.png" },
+        { id: 67, cat: "RAM", name: "Patriot Viper 16GB", price: "£79", tag: "Value", img: "pic/67.png" },
+        { id: 68, cat: "RAM", name: "Corsair Vengeance 32GB", price: "£150", tag: "Hot", img: "pic/68.png" },
+        { id: 69, cat: "RAM", name: "G.Skill Ripjaws 16GB", price: "£75", tag: "Budget", img: "pic/69.png" },
+        { id: 70, cat: "RAM", name: "Kingston Beast 64GB", price: "£250", tag: "Elite", img: "pic/70.png" },
+        
+        /* ========================= RAM (71–80 NEW) ========================= */
+        
+        { id: 71, cat: "RAM", name: "Corsair Vengeance RGB 64GB DDR5", price: "£295", tag: "RGB", img: "pic/71.png" },
+        { id: 72, cat: "RAM", name: "G.Skill Trident Z Neo 64GB", price: "£289", tag: "Gaming", img: "pic/72.png" },
+        { id: 73, cat: "RAM", name: "Kingston Fury Renegade 32GB", price: "£175", tag: "Fast", img: "pic/73.png" },
+        { id: 74, cat: "RAM", name: "Crucial Pro 32GB DDR5", price: "£149", tag: "Value", img: "pic/74.png" },
+        { id: 75, cat: "RAM", name: "ADATA XPG Lancer 64GB", price: "£270", tag: "Elite", img: "pic/75.png" },
+        { id: 76, cat: "RAM", name: "TeamGroup T-Force Delta 32GB", price: "£165", tag: "RGB", img: "pic/76.png" },
+        { id: 77, cat: "RAM", name: "Patriot Viper Steel 32GB", price: "£140", tag: "Popular", img: "pic/77.png" },
+        { id: 78, cat: "RAM", name: "Corsair Dominator Platinum 32GB", price: "£210", tag: "Premium", img: "pic/78.png" },
+        { id: 79, cat: "RAM", name: "G.Skill Ripjaws S5 32GB", price: "£155", tag: "Mid", img: "pic/79.png" },
+        { id: 80, cat: "RAM", name: "Kingston Beast RGB 32GB", price: "£170", tag: "Hot", img: "pic/80.png" },
+        
+        
+        
+        /* ========================= STORAGE (81–100) ========================= */
+        
+        { id: 81, cat: "STORAGE", name: "Samsung 990 Pro 4TB", price: "£450", tag: "Ultra", img: "pic/81.png" },
+        { id: 82, cat: "STORAGE", name: "WD Black SN850X 2TB", price: "£220", tag: "Popular", img: "pic/82.png" },
+        { id: 83, cat: "STORAGE", name: "Seagate FireCuda 530 2TB", price: "£199", tag: "Gaming", img: "pic/83.png" },
+        { id: 84, cat: "STORAGE", name: "Crucial P5 Plus 1TB", price: "£110", tag: "Value", img: "pic/84.png" },
+        { id: 85, cat: "STORAGE", name: "Kingston KC3000 2TB", price: "£180", tag: "Fast", img: "pic/85.png" },
+        { id: 86, cat: "STORAGE", name: "Samsung 870 EVO 2TB", price: "£150", tag: "SATA", img: "pic/86.png" },
+        { id: 87, cat: "STORAGE", name: "WD Blue 1TB SSD", price: "£95", tag: "Budget", img: "pic/87.png" },
+        { id: 88, cat: "STORAGE", name: "Seagate Barracuda 4TB HDD", price: "£89", tag: "HDD", img: "pic/88.png" },
+        { id: 89, cat: "STORAGE", name: "WD Red Pro 8TB", price: "£220", tag: "NAS", img: "pic/89.png" },
+        { id: 90, cat: "STORAGE", name: "Crucial MX500 1TB", price: "£75", tag: "Popular", img: "pic/90.png" },
+        { id: 91, cat: "STORAGE", name: "Samsung T7 Portable 2TB", price: "£170", tag: "Portable", img: "pic/91.png" },
+        { id: 92, cat: "STORAGE", name: "SanDisk Extreme 1TB", price: "£120", tag: "Portable", img: "pic/92.png" },
+        { id: 93, cat: "STORAGE", name: "WD My Passport 4TB", price: "£110", tag: "External", img: "pic/93.png" },
+        { id: 94, cat: "STORAGE", name: "Seagate Expansion 5TB", price: "£125", tag: "External", img: "pic/94.png" },
+        { id: 95, cat: "STORAGE", name: "Samsung 980 1TB", price: "£89", tag: "NVMe", img: "pic/95.png" },
+        { id: 96, cat: "STORAGE", name: "WD Green 480GB", price: "£45", tag: "Budget", img: "pic/96.png" },
+        { id: 97, cat: "STORAGE", name: "Crucial BX500 1TB", price: "£65", tag: "Value", img: "pic/97.png" },
+        { id: 98, cat: "STORAGE", name: "Seagate IronWolf 6TB", price: "£160", tag: "NAS", img: "pic/98.png" },
+        { id: 99, cat: "STORAGE", name: "Samsung 990 Pro 2TB", price: "£210", tag: "Fast", img: "pic/99.png" },
+        { id: 100, cat: "STORAGE", name: "WD Black SN770 1TB", price: "£130", tag: "Gaming", img: "pic/100.png" },
+        
+        /* ========================= COOLING (101–110) ========================= */
+        
+        { id: 101, cat: "COOLING", name: "NZXT Kraken Elite 360", price: "£220", tag: "AIO", img: "pic/101.png" },
+        { id: 102, cat: "COOLING", name: "Corsair iCUE H150i", price: "£199", tag: "RGB", img: "pic/102.png" },
+        { id: 103, cat: "COOLING", name: "Cooler Master ML360", price: "£179", tag: "Liquid", img: "pic/103.png" },
+        { id: 104, cat: "COOLING", name: "Noctua NH-D15", price: "£99", tag: "Air", img: "pic/104.png" },
+        { id: 105, cat: "COOLING", name: "Be Quiet Dark Rock Pro 5", price: "£89", tag: "Silent", img: "pic/105.png" },
+        { id: 106, cat: "COOLING", name: "Arctic Liquid Freezer II", price: "£129", tag: "Popular", img: "pic/106.png" },
+        { id: 107, cat: "COOLING", name: "DeepCool AK620", price: "£65", tag: "Value", img: "pic/107.png" },
+        { id: 108, cat: "COOLING", name: "Lian Li Galahad 360", price: "£189", tag: "RGB", img: "pic/108.png" },
+        { id: 109, cat: "COOLING", name: "Thermaltake TH360", price: "£159", tag: "Liquid", img: "pic/109.png" },
+        { id: 110, cat: "COOLING", name: "Cooler Master Hyper 212", price: "£39", tag: "Budget", img: "pic/110.png" },
+        
+        /* ========================= PERIPHERALS (111–120) ========================= */
+        
+        { id: 111, cat: "PERIPHERAL", name: "Logitech G Pro X Keyboard", price: "£139", tag: "Mechanical", img: "pic/111.png" },
+        { id: 112, cat: "PERIPHERAL", name: "Razer BlackWidow V4", price: "£169", tag: "RGB", img: "pic/112.png" },
+        { id: 113, cat: "PERIPHERAL", name: "Corsair K100 RGB", price: "£199", tag: "Premium", img: "pic/113.png" },
+        { id: 114, cat: "PERIPHERAL", name: "SteelSeries Apex Pro", price: "£189", tag: "Gaming", img: "pic/114.png" },
+        { id: 115, cat: "PERIPHERAL", name: "Logitech G502 X Mouse", price: "£89", tag: "Popular", img: "pic/115.png" },
+        { id: 116, cat: "PERIPHERAL", name: "Razer DeathAdder V3", price: "£79", tag: "Gaming", img: "pic/116.png" },
+        { id: 117, cat: "PERIPHERAL", name: "Corsair Dark Core RGB", price: "£99", tag: "Wireless", img: "pic/117.png" },
+        { id: 118, cat: "PERIPHERAL", name: "HyperX Alloy Origins", price: "£109", tag: "Mechanical", img: "pic/118.png" },
+        { id: 119, cat: "PERIPHERAL", name: "Logitech G733 Headset", price: "£129", tag: "Wireless", img: "pic/119.png" },
+        { id: 120, cat: "PERIPHERAL", name: "SteelSeries Arctis Nova 7", price: "£149", tag: "Gaming", img: "pic/120.png" },
+        
+        
+        
+        /* ========================= PERIPHERALS (121–130) ========================= */
+        
+        { id: 121, cat: "PERIPHERAL", name: "Razer Huntsman Mini", price: "£119", tag: "Compact", img: "pic/121.png" },
+        { id: 122, cat: "PERIPHERAL", name: "Logitech MX Master 3S", price: "£99", tag: "Pro", img: "pic/122.png" },
+        { id: 123, cat: "PERIPHERAL", name: "Corsair HS80 RGB", price: "£139", tag: "Headset", img: "pic/123.png" },
+        { id: 124, cat: "PERIPHERAL", name: "SteelSeries Rival 5", price: "£59", tag: "Gaming", img: "pic/124.png" },
+        { id: 125, cat: "PERIPHERAL", name: "Razer Basilisk V3", price: "£89", tag: "RGB", img: "pic/125.png" },
+        { id: 126, cat: "PERIPHERAL", name: "Logitech G915 TKL", price: "£199", tag: "Wireless", img: "pic/126.png" },
+        { id: 127, cat: "PERIPHERAL", name: "HyperX Pulsefire Haste", price: "£49", tag: "Lightweight", img: "pic/127.png" },
+        { id: 128, cat: "PERIPHERAL", name: "Corsair K70 RGB Pro", price: "£149", tag: "Mechanical", img: "pic/128.png" },
+        { id: 129, cat: "PERIPHERAL", name: "Logitech StreamCam", price: "£129", tag: "Webcam", img: "pic/129.png" },
+        { id: 130, cat: "PERIPHERAL", name: "Elgato Wave 3 Microphone", price: "£139", tag: "Streaming", img: "pic/130.png" },
+        
+        /* ========================= AI SMART HOME (131–140) ========================= */
+        
+        { id: 131, cat: "AI Smart Home", name: "AI Smart Thermostat Pro", price: "£249", tag: "Smart", img: "pic/131.png" },
+        { id: 132, cat: "AI Smart Home", name: "AI Voice Control Hub", price: "£179", tag: "Popular", img: "pic/132.png" },
+        { id: 133, cat: "AI Smart Home", name: "Smart AI Door Lock X", price: "£299", tag: "Secure", img: "pic/133.png" },
+        { id: 134, cat: "AI Smart Home", name: "AI Indoor Security Cam 4K", price: "£199", tag: "Hot", img: "pic/134.png" },
+        { id: 135, cat: "AI Smart Home", name: "Smart Lighting AI Kit", price: "£149", tag: "RGB", img: "pic/135.png" },
+        { id: 136, cat: "AI Smart Home", name: "AI Motion Sensor Max", price: "£89", tag: "Secure", img: "pic/136.png" },
+        { id: 137, cat: "AI Smart Home", name: "AI Smart Plug Ultra", price: "£39", tag: "Energy", img: "pic/137.png" },
+        { id: 138, cat: "AI Smart Home", name: "AI Air Quality Monitor", price: "£129", tag: "Health", img: "pic/138.png" },
+        { id: 139, cat: "AI Smart Home", name: "Smart AI Garage Opener", price: "£219", tag: "Smart", img: "pic/139.png" },
+        { id: 140, cat: "AI Smart Home", name: "AI Robot Vacuum Pro", price: "£399", tag: "Popular", img: "pic/140.png" },
+        
+        
+        /* ========================= AI SMART HOME (141–150 FINAL) ========================= */
+        
+        { id: 141, cat: "AI Smart Home", name: "AI Smart Curtain System", price: "£279", tag: "Luxury", img: "pic/141.png" },
+        { id: 142, cat: "AI Smart Home", name: "AI Smart Doorbell 2K", price: "£169", tag: "Secure", img: "pic/142.png" },
+        { id: 143, cat: "AI Smart Home", name: "AI Water Leak Detector", price: "£59", tag: "Safety", img: "pic/143.png" },
+        { id: 144, cat: "AI Smart Home", name: "AI Smart Sprinkler Control", price: "£189", tag: "Garden", img: "pic/144.png" },
+        { id: 145, cat: "AI Smart Home", name: "AI Pet Monitoring Cam", price: "£139", tag: "Pet", img: "pic/145.png" },
+        { id: 146, cat: "AI Smart Home", name: "AI Smart Mirror Display", price: "£499", tag: "Luxury", img: "pic/146.png" },
+        { id: 147, cat: "AI Smart Home", name: "AI Energy Monitor Pro", price: "£159", tag: "Energy", img: "pic/147.png" },
+        { id: 148, cat: "AI Smart Home", name: "AI Smart Smoke Detector", price: "£99", tag: "Safety", img: "pic/148.png" },
+        { id: 149, cat: "AI Smart Home", name: "AI Smart Kitchen Assistant", price: "£229", tag: "Smart", img: "pic/149.png" },
+        { id: 150, cat: "AI Smart Home", name: "AI Central Home Brain Hub", price: "£599", tag: "Elite", img: "pic/150.png" }
+        
+       
+
+    ];
+
 
         const grid = document.getElementById('main-grid');
 
@@ -351,4 +526,5 @@
     </script>
 </body>
 </html>
+
 

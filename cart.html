@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { 
-            /* Light Theme Palette */
             --primary: #8b5cf6; 
             --primary-glow: rgba(139, 92, 246, 0.1);
             --bg: #f8fafc; 
@@ -21,7 +20,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background: var(--bg); color: var(--text-main); line-height: 1.6; }
         
-        /* Navigation Header */
         header { 
             padding: 20px 5%; 
             display: flex; 
@@ -39,7 +37,6 @@
 
         .cart-wrapper { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; padding: 60px 10%; }
         
-        /* Cart Items */
         .cart-item {
             background: var(--card-bg); 
             border: 1px solid var(--border); 
@@ -68,9 +65,29 @@
         
         .cart-item h4 { font-size: 1.1rem; font-weight: 700; transition: 0.3s; cursor: pointer; color: var(--text-main); }
         .cart-item h4:hover { color: var(--primary); }
-        .cart-item p { color: var(--text-muted); font-size: 0.85rem; }
+        
+        /* Quantity Controls */
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+            background: #f1f5f9;
+            width: fit-content;
+            padding: 5px 15px;
+            border-radius: 12px;
+        }
+        .qty-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        .qty-btn:hover { transform: scale(1.2); }
 
-        /* Summary Sidebar */
         .summary-card {
             background: var(--card-bg); 
             border: 1px solid var(--border); 
@@ -82,17 +99,6 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.03);
         }
         
-        .summary-card h3 { font-weight: 800; font-size: 1.3rem; margin-bottom: 20px; }
-
-        .analytics-pill {
-            background: #f5f3ff; 
-            border-radius: 15px; 
-            padding: 20px;
-            margin-top: 25px; 
-            border-left: 4px solid var(--primary);
-        }
-        .analytics-pill p { color: var(--text-main); line-height: 1.4; }
-
         .checkout-btn {
             width: 100%; padding: 20px; border-radius: 15px; background: var(--text-main);
             color: white; border: none; font-weight: 800; cursor: pointer; margin-top: 30px;
@@ -108,46 +114,16 @@
 <body>
 
 <header>
-    <div class="logo" onclick="location.href='home.html'">SUPREME CART</div>
+    <div class="logo" onclick="location.href='store.html'">SUPREME CART</div>
     <nav style="display:flex; gap:25px;">
-        <a href="home.html" style="color: var(--text-main); text-decoration:none; opacity:0.6; font-weight: 700; font-size: 0.8rem;">HOME</a>
         <a href="store.html" style="color: var(--text-main); text-decoration:none; opacity:0.6; font-weight: 700; font-size: 0.8rem;">STORE</a>
         <a href="checkout.html" style="color:var(--primary); text-decoration:none; font-weight:800; font-size: 0.8rem;">CHECKOUT</a>
     </nav>
 </header>
 
 <div class="cart-wrapper">
-    <div class="items-list">
-        <h2 style="margin-bottom:35px; font-size:2.8rem; font-weight: 800;">Your Cart <span style="opacity:0.2; font-weight: 400;">(2)</span></h2>
-        
-        <div class="cart-item">
-            <div class="item-img">
-                <img src="https://images.unsplash.com/photo-1593642702821-c857c897f7b6?auto=format&fit=crop&q=80&w=300" alt="Supreme Workstation">
-            </div>
-            <div style="flex:1;">
-                <h4 onclick="location.href='product-detail.html'">Supreme Workstation Z-100</h4>
-                <p>Custom Liquid Cooled • 128GB RAM • 105 Russell St Build</p>
-            </div>
-            <div style="text-align:right;">
-                <p style="font-weight:800; font-size:1.3rem;">£4,500.00</p>
-                <button class="btn-remove"><i class="fas fa-trash"></i> Remove Item</button>
-            </div>
+    <div class="items-list" id="cart-items-container">
         </div>
-
-        <div class="cart-item">
-            <div class="item-img">
-                <img src="https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=300" alt="Apex Keyboard">
-            </div>
-            <div style="flex:1;">
-                <h4 onclick="location.href='product-detail.html'">Apex Mechanical Pro</h4>
-                <p>Magnetic Switches • Black Edition • Ultra Low Latency</p>
-            </div>
-            <div style="text-align:right;">
-                <p style="font-weight:800; font-size:1.3rem;">£199.00</p>
-                <button class="btn-remove"><i class="fas fa-trash"></i> Remove Item</button>
-            </div>
-        </div>
-    </div>
 
     <aside class="summary-card">
         <h3>Order Summary</h3>
@@ -155,22 +131,17 @@
         
         <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
             <span style="color: var(--text-muted);">Subtotal</span>
-            <span style="font-weight: 600;">£4,699.00</span>
+            <span id="subtotal-display" style="font-weight: 600;">£0.00</span>
         </div>
         
         <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
-            <span style="color: var(--text-muted);">Shipping (Luton HQ)</span>
-            <span style="color:#10b981; font-weight: 700; cursor: pointer;" onclick="location.href='logistics.html'">FREE <i class="fas fa-info-circle" style="font-size: 0.7rem;"></i></span>
+            <span style="color: var(--text-muted);">Shipping</span>
+            <span style="color:#10b981; font-weight: 700;">FREE</span>
         </div>
         
         <div style="display:flex; justify-content:space-between; font-size:1.6rem; font-weight: 800; margin-top:35px;">
             <span>Total</span>
-            <span>£4,699.00</span>
-        </div>
-
-        <div class="analytics-pill">
-            <p style="font-size:0.7rem; font-weight:800; color:var(--primary); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px;">Loyalty Insight</p>
-            <p style="font-size:0.9rem; font-weight: 600; cursor: pointer;" onclick="location.href='rewards.html'">You are saving £450 and earning 4,699 S-Credits! <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i></p>
+            <span id="total-display">£0.00</span>
         </div>
 
         <button class="checkout-btn" onclick="location.href='checkout.html'">Secure Checkout <i class="fas fa-shield-alt" style="margin-left: 10px;"></i></button>
@@ -184,6 +155,81 @@
 <footer style="padding: 40px; text-align: center; color: var(--text-muted); font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 40px;">
     &copy; 2026 SUPREME GOODS LTD | Verified Checkout Infrastructure
 </footer>
+
+<script>
+    function renderCart() {
+        const cart = JSON.parse(localStorage.getItem("supreme_cart")) || [];
+        const container = document.getElementById('cart-items-container');
+        let subtotal = 0;
+
+        // Update the header count and title
+        container.innerHTML = `<h2 style="margin-bottom:35px; font-size:2.8rem; font-weight: 800;">Your Cart <span style="opacity:0.2; font-weight: 400;">(${cart.length})</span></h2>`;
+
+        if (cart.length === 0) {
+            container.innerHTML += `<div style="padding: 40px; text-align: center; background: white; border-radius: 20px;">
+                <i class="fas fa-shopping-basket" style="font-size: 3rem; color: var(--border); margin-bottom: 20px;"></i>
+                <p style="color: var(--text-muted);">Your cart is feeling light. Let's add some gear!</p>
+                <button onclick="location.href='store.html'" class="checkout-btn" style="width: auto; padding: 15px 30px; margin-top: 20px;">Return to Store</button>
+            </div>`;
+        }
+
+        cart.forEach((item) => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+
+            container.innerHTML += `
+                <div class="cart-item">
+                    <div class="item-img">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div style="flex:1;">
+                        <h4>${item.name}</h4>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <span style="font-weight: 800; min-width: 20px; text-align: center;">${item.quantity}</span>
+                            <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                        </div>
+                    </div>
+                    <div style="text-align:right;">
+                        <p style="font-weight:800; font-size:1.3rem;">£${itemTotal.toLocaleString()}</p>
+                        <button class="btn-remove" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i> Remove</button>
+                    </div>
+                </div>`;
+        });
+
+        // Update Bill
+        const formattedTotal = `£${subtotal.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+        document.getElementById('subtotal-display').textContent = formattedTotal;
+        document.getElementById('total-display').textContent = formattedTotal;
+    }
+
+    function updateQuantity(id, change) {
+        let cart = JSON.parse(localStorage.getItem("supreme_cart")) || [];
+        const itemIndex = cart.findIndex(p => p.id === id);
+        
+        if (itemIndex > -1) {
+            cart[itemIndex].quantity += change;
+            
+            // Remove item if quantity hits zero
+            if (cart[itemIndex].quantity <= 0) {
+                cart.splice(itemIndex, 1);
+            }
+            
+            localStorage.setItem("supreme_cart", JSON.stringify(cart));
+            renderCart();
+        }
+    }
+
+    function removeFromCart(id) {
+        let cart = JSON.parse(localStorage.getItem("supreme_cart")) || [];
+        cart = cart.filter(p => p.id !== id);
+        localStorage.setItem("supreme_cart", JSON.stringify(cart));
+        renderCart();
+    }
+
+    // Initialize on page load
+    window.onload = renderCart;
+</script>
 
 </body>
 </html>

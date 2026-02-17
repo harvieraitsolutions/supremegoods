@@ -91,6 +91,7 @@
         .logo-text h1 {
             font-size: 1.5rem;
             letter-spacing: 2px;
+            font-weight: 800;
             background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -188,7 +189,7 @@
             box-shadow: 0 20px 40px var(--primary-glow);
         }
 
-        /* 25 Pages Quick Access Grid */
+        /* Infrastructure Grid */
         .page-directory {
             padding: 100px 5%;
         }
@@ -229,7 +230,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Footer */
+        /* Footer Optimized for No Social Media */
         footer {
             background: rgba(0,0,0,0.5);
             padding: 80px 5% 40px;
@@ -238,18 +239,18 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-columns: 2fr 1.2fr 1.2fr;
             gap: 50px;
             margin-bottom: 50px;
         }
 
-        .footer-info h3 { margin-bottom: 20px; font-size: 1.8rem; }
-        .footer-info p { opacity: 0.6; line-height: 1.8; margin-bottom: 10px; }
+        .footer-info h3 { margin-bottom: 20px; font-size: 1.8rem; font-weight: 800; }
+        .footer-info p { opacity: 0.6; line-height: 1.8; margin-bottom: 10px; font-size: 0.9rem; }
 
-        .footer-links h4 { margin-bottom: 25px; color: var(--primary); }
+        .footer-links h4 { margin-bottom: 25px; color: var(--primary); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
         .footer-links ul { list-style: none; }
         .footer-links ul li { margin-bottom: 12px; }
-        .footer-links a { text-decoration: none; color: white; opacity: 0.6; transition: 0.3s; }
+        .footer-links a { text-decoration: none; color: white; opacity: 0.6; transition: 0.3s; font-size: 0.9rem; }
         .footer-links a:hover { opacity: 1; padding-left: 10px; color: var(--primary); }
 
         /* Interactive Elements */
@@ -280,7 +281,7 @@
             <img src="pic.png" alt="Supreme Goods Logo">
             <div class="logo-text">
                 <h1>SUPREME GOODS</h1>
-                <span style="font-size: 0.6rem; letter-spacing: 3px; opacity: 0.6;">TECH EXCELLENCE</span>
+                <span style="font-size: 0.6rem; letter-spacing: 3px; opacity: 0.6; font-weight: 800;">TECH EXCELLENCE</span>
             </div>
         </div>
 
@@ -308,15 +309,15 @@
             <p>Supreme Goods Ltd brings you the world's most advanced electronics with a seamless, high-performance shopping experience designed for the future.</p>
             <div class="cta-group">
                 <a href="store.html" class="btn-primary">Explore Products</a>
-                <a href="#pages" class="btn-primary" style="background: var(--glass); border: 1px solid var(--glass-border);">View 25 Modules</a>
+                <a href="#pages" class="btn-primary" style="background: var(--glass); border: 1px solid var(--glass-border);">Website Infrastructure</a>
             </div>
         </div>
     </section>
 
     <section class="page-directory" id="pages">
         <div class="section-title">
-            <h3>Website Infrastructure</h3>
-            <p>25 Specialized Interactive Modules</p>
+            <h3 style="font-size: 2.2rem; font-weight: 800;">System Architecture</h3>
+            <p style="opacity: 0.6;">Interactive Modules Optimized for High-End Retail</p>
         </div>
         <div class="directory-grid">
             <div class="page-card" onclick="location.href='store.html'">
@@ -332,7 +333,7 @@
             <div class="page-card" onclick="location.href='gaming.html'">
                 <i class="fas fa-gamepad"></i>
                 <h4>Gaming Pro</h4>
-                <p>E-Sports Gear Hub</p>
+                <p>Peak Performance Gear</p>
             </div>
             <div class="page-card" onclick="location.href='smart-living.html'">
                 <i class="fas fa-robot"></i>
@@ -342,38 +343,24 @@
             <div class="page-card" onclick="location.href='director.html'">
                 <i class="fas fa-user-tie"></i>
                 <h4>Director Suite</h4>
-                <p>Thota Natesh Profile</p>
+                <p>Executive Leadership</p>
             </div>
             <div class="page-card" onclick="location.href='flash-sale.html'">
                 <i class="fas fa-bolt"></i>
                 <h4>Flash Nexus</h4>
-                <p>Live Countdown Deals</p>
-            </div>
-            <div class="page-card" onclick="location.href='compare.html'">
-                <i class="fas fa-balance-scale"></i>
-                <h4>Comparison Engine</h4>
-                <p>Side-by-Side Specs</p>
+                <p>Limited Inventory Deals</p>
             </div>
             <div class="page-card" onclick="location.href='cart.html'">
                 <i class="fas fa-shopping-bag"></i>
                 <h4>Smart Cart</h4>
-                <p>Interactive Analytics</p>
+                <p>Interactive Checkout</p>
             </div>
             <div class="page-card" onclick="location.href='checkout.html'">
                 <i class="fas fa-lock"></i>
                 <h4>Secure Checkout</h4>
-                <p>Multi-step Gateway</p>
+                <p>Encrypted Gateway</p>
             </div>
-            <div class="page-card" onclick="location.href='dashboard.html'">
-                <i class="fas fa-user-circle"></i>
-                <h4>User Dashboard</h4>
-                <p>Personal Command Center</p>
-            </div>
-            <div class="page-card" onclick="location.href='tracking.html'">
-                <i class="fas fa-shipping-fast"></i>
-                <h4>Track Nebula</h4>
-                <p>Live Logistics Visuals</p>
-            </div>
+            
             <div class="page-card" onclick="location.href='b2b.html'">
                 <i class="fas fa-chart-line"></i>
                 <h4>B2B Solutions</h4>
@@ -386,28 +373,18 @@
             </div>
             <div class="page-card" onclick="location.href='support.html'">
                 <i class="fas fa-headset"></i>
-                <h4>Live Concierge</h4>
-                <p>Help Center & AI Chat</p>
-            </div>
-            <div class="page-card" onclick="location.href='community.html'">
-                <i class="fas fa-users"></i>
-                <h4>Community Hub</h4>
-                <p>Social Tech Wall</p>
+                <h4>Concierge</h4>
+                <p>Professional Help Desk</p>
             </div>
             <div class="page-card" onclick="location.href='logistics.html'">
                 <i class="fas fa-globe-europe"></i>
                 <h4>Global Logistics</h4>
-                <p>International Trade</p>
+                <p>Fulfillment Network</p>
             </div>
             <div class="page-card" onclick="location.href='green-tech.html'">
                 <i class="fas fa-leaf"></i>
                 <h4>Sustainability</h4>
-                <p>Refurbished Initiatives</p>
-            </div>
-            <div class="page-card" onclick="location.href='careers.html'">
-                <i class="fas fa-briefcase"></i>
-                <h4>Career Portal</h4>
-                <p>Join the Supreme Team</p>
+                <p>Refurbished Projects</p>
             </div>
             <div class="page-card" onclick="location.href='partner.html'">
                 <i class="fas fa-handshake"></i>
@@ -416,23 +393,23 @@
             </div>
             <div class="page-card" onclick="location.href='search.html'">
                 <i class="fas fa-search"></i>
-                <h4>Advanced Search</h4>
-                <p>Elastic Filtering</p>
+                <h4>Elastic Search</h4>
+                <p>Deep Filtering</p>
             </div>
             <div class="page-card" onclick="location.href='faq.html'">
                 <i class="fas fa-question-circle"></i>
                 <h4>Smart FAQ</h4>
-                <p>Interactive Accordions</p>
+                <p>Technical Knowledge</p>
             </div>
             <div class="page-card" onclick="location.href='legal.html'">
                 <i class="fas fa-shield-alt"></i>
                 <h4>Legal Hub</h4>
-                <p>Compliance & Privacy</p>
+                <p>Privacy & Compliance</p>
             </div>
             <div class="page-card" onclick="location.href='rewards.html'">
                 <i class="fas fa-award"></i>
                 <h4>Loyalty Rewards</h4>
-                <p>Membership Tiers</p>
+                <p>S-Credit Points</p>
             </div>
             <div class="page-card" onclick="location.href='contact.html'">
                 <i class="fas fa-map-marked-alt"></i>
@@ -450,7 +427,6 @@
                 <p><i class="fas fa-envelope"></i> contact@supremegoods.uk</p>
                 <p><i class="fas fa-phone"></i> +44 7398 527022</p>
                 <p><i class="fas fa-map-marker-alt"></i> 105 Russell Street, Luton, LU1 5EB, UK</p>
-                <p><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm</p>
             </div>
             <div class="footer-links">
                 <h4>Navigation</h4>
@@ -462,26 +438,17 @@
                 </ul>
             </div>
             <div class="footer-links">
-                <h4>Support</h4>
+                <h4>Support & Compliance</h4>
                 <ul>
                     <li><a href="support.html">Help Center</a></li>
-                    <li><a href="tracking.html">Order Tracking</a></li>
-                    <li><a href="legal.html">Returns</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="legal.html">Returns & Refunds</a></li>
                     <li><a href="legal.html">Privacy Policy</a></li>
                 </ul>
             </div>
-            <div class="footer-links">
-                <h4>Social</h4>
-                <ul>
-                    <li><a href="community.html">Instagram</a></li>
-                    <li><a href="partner.html">LinkedIn</a></li>
-                    <li><a href="community.html">Twitter (X)</a></li>
-                    <li><a href="community.html">Discord</a></li>
-                </ul>
-            </div>
         </div>
-        <div style="text-align: center; border-top: 1px solid var(--glass-border); padding-top: 30px; opacity: 0.5;">
-            &copy; 2026 SUPREME GOODS LTD. Engineered for Excellence.
+        <div style="text-align: center; border-top: 1px solid var(--glass-border); padding-top: 30px; opacity: 0.4; font-size: 0.8rem;">
+            &copy; 2026 SUPREME GOODS LTD. Engineered for Excellence. 105 Russell Street, Luton.
         </div>
     </footer>
 
@@ -499,11 +466,9 @@
             document.documentElement.style.setProperty('--primary-glow', color1 + '80');
             document.documentElement.style.setProperty('--accent-gradient', `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)`);
             
-            // Update Background Blobs
             document.getElementById('blob1').style.background = color1;
             document.getElementById('blob2').style.background = color2;
 
-            // Add an animation pop
             document.getElementById('hero-title').style.transform = 'scale(1.02)';
             setTimeout(() => {
                 document.getElementById('hero-title').style.transform = 'scale(1)';
@@ -519,3 +484,4 @@
     </script>
 </body>
 </html>
+

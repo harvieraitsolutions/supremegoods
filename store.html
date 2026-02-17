@@ -353,7 +353,8 @@
             filteredList.forEach(p => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
-                card.onclick = () => location.href = 'product-detail.html';
+                // Stop propagation so clicking the button doesn't trigger the card's detail link
+                card.onclick = () => { location.href = 'product-detail.html'; };
                 card.innerHTML = `
                     <span class="badge">${p.tag}</span>
                     <div class="product-image">
@@ -364,34 +365,46 @@
                         <h3>${p.name}</h3>
                         <div class="price-row">
                             <span class="price">${p.price}</span>
-                            <button class="add-btn" onclick="event.stopPropagation(); location.href='cart.html'"><i class="fas fa-plus"></i></button>
+                            <button class="add-btn" onclick="addToCart(event, ${p.id})">
+                                <i class="fas fa-plus"></i>
+                            </button>
                         </div>
                     </div>
                 `;
                 grid.appendChild(card);
             });
         }
-        function addToCart(productId) {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+        function addToCart(event, productId) {
+            event.stopPropagation(); // Prevents navigating to product-detail.html
+            let cart = JSON.parse(localStorage.getItem("supreme_cart")) || [];
             const product = products.find(p => p.id === productId);
-
-            const cleanPrice = parseFloat(product.price.replace("£",""));
-
-            cart.push({
-                id: product.id,
-                name: product.name,
-                price: cleanPrice,
-                image: `https://images.unsplash.com/photo-${product.img}?auto=format&fit=crop&q=80&w=500`,
-                link: "product-detail.html"
-            });
-
-            localStorage.setItem("cart", JSON.stringify(cart));
-            updateCartCount();
+    
+            // Standardize price to number
+            const numPrice = parseFloat(product.price.replace('£', '').replace(',', ''));
+    
+            // Check if item exists to increment quantity, or add new
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: numPrice,
+                    image: `https://images.unsplash.com/photo-${product.img}?auto=format&fit=crop&q=80&w=500`,
+                    quantity: 1
+                });
+            }
+    
+            localStorage.setItem("supreme_cart", JSON.stringify(cart));
+            location.href = 'cart.html'; // Redirect as requested
         }
-
+    
         function updateCartCount() {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            document.getElementById("cart-count").textContent = cart.length;
+            let cart = JSON.parse(localStorage.getItem("supreme_cart")) || [];
+            const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+            document.getElementById("cart-count").textContent = count;
         }
 
         function applyFilters() {
@@ -412,7 +425,10 @@
 
         // Initialize display
         displayProducts(products);
+        updateCartCount();
+        
     </script>
 
 </body>
 </html>
+
